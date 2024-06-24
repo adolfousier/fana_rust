@@ -1,0 +1,53 @@
+[package]
+name = "fanallm"
+version = "0.3.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# reqwest = { version = "0.11", features = ["json"] }
+# tokio = { version = "1", features = ["full"] }
+# serde = { version = "1.0", features = ["derive"] }
+# serde_json = "1.0"
+# dotenv = "0.15"
+# env_logger = "0.10.0"
+# log = "0.4.17"
+
+# actix = "0.13.5"
+# actix-web = "4.8.0"
+# actix-multipart = "0.6.2"
+# actix-session = { version = "0.9", features = ["cookie-session"] }
+# actix-web-actors = "4.2"
+# async-trait = "0.1.80"
+# actix-cors = "0.7.0"
+# actix-files = "0.6.6"
+# actix-rt = "2.10.0"
+# actix-web-httpauth = "0.8.2"
+# azure_sdk_storage_blob = "0.45.3"
+# azure_sdk_storage_core = "0.44.4"
+# chrono = { version = "0.4", features = ["serde"] }
+dotenv = "0.15"
+env_logger = "0.11.3"
+# futures = "0.3.30"
+# jsonwebtoken = "9.3.0"
+# lazy_static = "1.5.0"
+log = "0.4.21"
+log4rs = "1.2"
+# ndarray = "0.15.6"
+# ndarray-linalg = "0.16.0"
+# openai-rs = "0.1.1"
+openai-rust = "1.5.2"
+# postgrest = "1.6.0"
+# rand = "0.8.4"
+regex = "1.0.5"
+reqwest = { version = "0.12.5", features = ["json"] }
+serde = { version = "1.0.203", features = ["derive"] }
+serde_json = "1.0.117"
+# supabase-rust = "0.1.2"
+tiktoken-rs = "0.5.9"
+tokio = { version = "1.38.0", features = ["full"] }
+tokio-retry = "0.3.0"
+# uuid = { version = "1.8.0", features = ["v4"] }
+# whatlang = "0.16.4"
+# rustc-hash = "2.0.0"
