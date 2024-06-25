@@ -30,6 +30,7 @@ struct ImageUrl {
 #[derive(Deserialize, Debug)]
 struct AnalyzeImageResponse {
     choices: Vec<Choice>,
+    usage: Option<Usage>,
 }
 
 #[derive(Deserialize, Debug)]
@@ -43,6 +44,13 @@ struct MessageResponse {
 }
 
 #[derive(Deserialize, Debug)]
+struct Usage {
+    prompt_tokens: usize,
+    completion_tokens: usize,
+    total_tokens: usize,
+}
+
+#[derive(Deserialize, Debug)]
 struct OpenAIErrorResponse {
     error: OpenAIError,
 }
@@ -50,9 +58,6 @@ struct OpenAIErrorResponse {
 #[derive(Deserialize, Debug)]
 struct OpenAIError {
     message: String,
-    r#type: String,
-    param: Option<String>,
-    code: Option<String>,
 }
 
 pub async fn analyze_image(image_url: &str) -> Result<String, Box<dyn std::error::Error>> {
@@ -100,6 +105,12 @@ pub async fn analyze_image(image_url: &str) -> Result<String, Box<dyn std::error
     if status.is_success() {
         let analyze_response: AnalyzeImageResponse = serde_json::from_str(&response_text)?;
         debug!("Parsed response: {:?}", analyze_response);
+
+        if let Some(usage) = &analyze_response.usage {
+            debug!("Prompt tokens: {}", usage.prompt_tokens);
+            debug!("Completion tokens: {}", usage.completion_tokens);
+            debug!("Total tokens: {}", usage.total_tokens);
+        }
 
         if let Some(choice) = analyze_response.choices.first() {
             Ok(choice.message.content.clone())
