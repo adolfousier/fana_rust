@@ -68,7 +68,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                     // Add the image information to the conversation
                     messages.push(json!({
                         "role": "assistant",
-                        "content": format!("I've generated an image based on your request. You can view it here: {}", image_url)
+                        "content": format!("{}", image_url)
                     }));
                 },
                 Err(e) => {
