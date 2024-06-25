@@ -32,7 +32,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     log4rs::init_file("log4rs.yaml", Default::default())?;
     info!("Starting Fana AI assistant");
 
-    let api_key = env::var("GROQ_API_KEY").expect("GROQ_API_KEY not set");
+    let groq_api_key = env::var("GROQ_API_KEY").expect("GROQ_API_KEY not set");
+    //let openai_api_key = env::var("OPENAI_API_KEY").expect("OPENAI_API_KEY not set");
     let system_prompt = system_prompt::SYSTEM_PROMPT;
     
     // Verify if the SYSTEM_PROMPT was loaded correctly
@@ -40,7 +41,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         error!("SYSTEM_PROMPT is empty!");
         return Err("SYSTEM_PROMPT is empty".into());
     }
-    debug!("System prompt loaded: {}", system_prompt);
+    debug!("System prompt loaded);
 
     let client = Client::new();
     
@@ -130,7 +131,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
             let response = client.post("https://api.groq.com/openai/v1/chat/completions")
                 .header("Content-Type", "application/json")
-                .header("Authorization", format!("Bearer {}", api_key))
+                .header("Authorization", format!("Bearer {}", groq_api_key))
                 .json(&payload)
                 .send()
                 .await?;
@@ -152,6 +153,14 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                                 "content": content
                             }));
                             debug!("Added assistant message to context");
+
+                            // Log token usage
+                            if let Some(usage) = json["usage"].as_object() {
+                                let prompt_tokens = usage.get("prompt_tokens").and_then(Value::as_u64).unwrap_or(0);
+                                let completion_tokens = usage.get("completion_tokens").and_then(Value::as_u64).unwrap_or(0);
+                                let total_tokens = usage.get("total_tokens").and_then(Value::as_u64).unwrap_or(0);
+                                info!("Token usage - Prompt tokens: {}, Completion tokens: {}, Total tokens: {}", prompt_tokens, completion_tokens, total_tokens);
+                            }
                         }
                     }
                 }
@@ -164,4 +173,3 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     info!("Shutting down Fana AI backend");
     Ok(())
 }
-
