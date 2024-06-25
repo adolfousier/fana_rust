@@ -12,7 +12,6 @@ use actix_multipart::Multipart;
 use actix_web::web::Bytes;
 use uuid::Uuid;
 use lazy_static::lazy_static;
-use crate::modules::logging_setup::setup_logging;
 use log::{info, error};
 
 lazy_static! {

@@ -1,8 +1,7 @@
 use log::{info, error};
-use crate::modules::logging_setup::setup_logging;
-use crate::modules::triggers_check::check_for_trigger_words;
-use crate::modules::process_image::process_image_interaction;
-use crate::modules::process_text::handle_text_interaction;
+use crate::triggers_check::check_for_trigger_words;
+use crate::process_image::process_image_interaction;
+use crate::process_text::handle_text_interaction;
 use regex::Regex;
 use uuid::Uuid;
 use serde_json::Value;

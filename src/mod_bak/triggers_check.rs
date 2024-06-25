@@ -1,12 +1,14 @@
-use crate::modules::logging_setup::setup_logging;
-use crate::modules::triggers_generate::trigger_words;
-use crate::modules::triggers_regenerate::get_regeneration_patterns;
-use log::{info, error};
+// triggers_check.rs
+use crate::triggers_generate::trigger_words;
+use crate::triggers_regenerate::get_regeneration_patterns;
 use regex::Regex;
 use std::collections::HashSet;
 use std::env;
 use serde::{Deserialize, Serialize};
 use lazy_static::lazy_static;
+use serde_json::{json, Value};
+use log4rs;
+
 
 lazy_static! {
     static ref OPENAI_API_KEY: String = env::var("OPENAI_API_KEY").expect("OPENAI_API_KEY must be set");
@@ -109,9 +111,3 @@ pub async fn check_for_trigger_words(
         (false, vec![])
     }
 }
-
-
-pub fn initialize_logging() {
-    setup_logging().expect("Failed to initialize logging");
-}
-

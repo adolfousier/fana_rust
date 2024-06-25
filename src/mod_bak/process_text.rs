@@ -1,14 +1,12 @@
-use crate::modules::logging_setup::setup_logging;
-use crate::modules::content_fetcher::find_most_similar_content;
-use crate::modules::system_prompt::get_system_prompt;
-use crate::modules::embedding::generate_embedding;
-use crate::modules::sb_client::query_supabase;
-use crate::modules::sb_chat_history::{retrieve_chat_history, store_chat_history};
-use crate::modules::chat_completion::generate_chat_response;
-use crate::modules::translate::{translate_to_english, translate_back_to_user};
-use crate::modules::triggers_check::check_for_trigger_words;
-use crate::modules::process_image::process_image_interaction;
-use crate::modules::tokenizer::count_tokens as custom_count_tokens;
+use crate::content_fetcher::find_most_similar_content;
+use crate::system_prompt::get_system_prompt;
+use crate::embedding::generate_embedding;
+use crate::sb_client::query_supabase;
+use crate::sb_chat_history::{retrieve_chat_history, store_chat_history};
+use crate::chat_completion::generate_chat_response;
+use crate::translate::{translate_to_english, translate_back_to_user};
+use crate::triggers_check::check_for_trigger_words;
+use crate::process_image::process_image_interaction
 use log::{info, error};
 use whatlang::detect;
 use serde_json::{Value, json};

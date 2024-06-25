@@ -1,5 +1,3 @@
-mod system_prompt;
-
 use std::env;
 use log::{info, debug, error};
 use log4rs;
@@ -24,22 +22,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     info!("Starting Fana AI assistant");
 
     let api_key = env::var("GROQ_API_KEY").expect("GROQ_API_KEY not set");
-    let system_prompt = system_prompt::SYSTEM_PROMPT;
-
-    // Verificar se o SYSTEM_PROMPT foi carregado corretamente
-    if system_prompt.is_empty() {
-        error!("SYSTEM_PROMPT is empty!");
-        return Err("SYSTEM_PROMPT is empty".into());
-    }
-
-    debug!("System prompt loaded: {}", system_prompt);
-
     let client = Client::new();
-    
+
     let mut messages = vec![
         json!({
             "role": "system",
-            "content": system_prompt
+            "content": "You're Fana AI assistant, an advanced artificial intelligence platform designed to enhance user experiences and streamline various tasks through intelligent automation and contextual understanding."
         })
     ];
 

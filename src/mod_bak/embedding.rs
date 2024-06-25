@@ -1,7 +1,6 @@
 use log::{info, error};
 use reqwest::Client;
 use std::env;
-use crate::modules::logging_setup::setup_logging;
 use ndarray::Array1;
 
 lazy_static::lazy_static! {

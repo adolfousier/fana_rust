@@ -2,7 +2,6 @@ use std::env;
 use std::fs::File;
 use std::io::Read;
 use log::info;
-use crate::modules::logging_setup::setup_logging;
 use async_trait::async_trait;
 use std::error::Error;
 use reqwest::Client;
@@ -89,10 +88,6 @@ impl STT for STTClient {
         
         Ok(translation.to_string())
     }
-}
-
-pub fn initialize_logging() {
-    setup_logging().expect("Failed to initialize logging");
 }
 
 pub async fn create_stt_client() -> STTClient {

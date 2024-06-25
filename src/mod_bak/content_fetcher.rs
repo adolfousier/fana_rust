@@ -1,9 +1,8 @@
 use crate::modules::embedding::cosine_similarity;
 use log::{info, error};
 use serde_json::Value;
-use crate::modules::logging_setup::setup_logging;
-use crate::modules::triggers_check::{regeneration_combine, contains_exact_trigger_pattern};
-use crate::modules::triggers_regenerate::get_regeneration_patterns;
+use crate::triggers_check::{regeneration_combine, contains_exact_trigger_pattern};
+use crate::triggers_regenerate::get_regeneration_patterns;
 use regex::Regex;
 use std::error::Error;
 use std::collections::HashSet;

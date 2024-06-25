@@ -1,6 +1,6 @@
-use crate::modules::embedding::generate_embedding;
-use crate::modules::content_fetcher::find_most_similar_chat_history;
-use crate::modules::chat_completion::generate_chat_response;
+use crate::embedding::generate_embedding;
+use crate::content_fetcher::find_most_similar_chat_history;
+use crate::chat_completion::generate_chat_response;
 use log::{info, error};
 use reqwest::Client;
 use serde_json::Value;

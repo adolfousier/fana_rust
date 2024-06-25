@@ -9,7 +9,6 @@ use std::env;
 use actix_web::http::header::{COOKIE, SET_COOKIE};
 use reqwest::Client;
 use crate::modules::api_auth::get_api_key;
-use crate::modules::logging_setup::setup_logging;
 use crate::DESCRIPTION;
 
 #[derive(Serialize, Deserialize)]
@@ -120,7 +119,6 @@ async fn handle_llm_interaction(
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     dotenv::dotenv().ok();
-    setup_logging().expect("Failed to initialize logging");
 
     HttpServer::new(|| {
         let cors = Cors::default()
