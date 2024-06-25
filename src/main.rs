@@ -36,11 +36,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let system_prompt = system_prompt::SYSTEM_PROMPT;
     
     // Verify if the SYSTEM_PROMPT was loaded correctly
+    // Verify if the SYSTEM_PROMPT was loaded correctly
     if system_prompt.is_empty() {
         error!("SYSTEM_PROMPT is empty!");
         return Err("SYSTEM_PROMPT is empty".into());
     }
-    debug!("System prompt loaded: {}", system_prompt);
+    debug!("System prompt loaded successfully");
+
 
     let client = Client::new();
     
@@ -53,7 +55,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     debug!("Initial system message set");
 
     loop {
-        print!("\nYOU:\n");
+        print!("\nYou:\n");
         io::stdout().flush()?;
         let mut user_input = String::new();
         io::stdin().read_line(&mut user_input)?;
@@ -87,16 +89,17 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             }
         } else if triggers_generate::contains_trigger_word(user_input) {
             info!("Trigger word detected in user input. Generating image.");
-            
+    
             match generate_image(user_input).await {
                 Ok(image_url) => {
-                    println!("\nFANA:\n{}", image_url);
+                    println!("\nFANA:\nI've generated an image based on your request.");
+                    println!("You can view it here: {}", image_url);
                     info!("Image generated. URL: {}", image_url);
-                    
+            
                     // Add the image information to the conversation
                     messages.push(json!({
                         "role": "assistant",
-                        "content": format!("I've generated an image based on your request. You can view it here: {}", image_url)
+                        "content": format!("{}", image_url)
                     }));
                 },
                 Err(e) => {
@@ -146,7 +149,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                         if let Some(content) = message.get("content") {
                             let content = content.as_str().unwrap_or("");
                             println!("\nFANA:\n{}", content);
-                            info!("Fana response: {}", content);
+                            info!("FANA response: {}", content);
                             messages.push(json!({
                                 "role": "assistant",
                                 "content": content
@@ -164,7 +167,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                     }
                 }
             } else {
-                error!("Failed to parse Groq API response");
+                error!("Failed to parse FANA API response");
             }
         }
     }
