@@ -1,4 +1,7 @@
+// main.rs
 mod system_prompt;
+mod triggers;
+mod generate;
 
 use std::env;
 use log::{info, debug, error};
@@ -17,21 +20,18 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     
     // Create logs directory if it doesn't exist
     fs::create_dir_all("logs")?;
-
     // Configure log4rs
     log4rs::init_file("log4rs.yaml", Default::default())?;
-
     info!("Starting Fana AI assistant");
 
     let api_key = env::var("GROQ_API_KEY").expect("GROQ_API_KEY not set");
     let system_prompt = system_prompt::SYSTEM_PROMPT;
-
-    // Verificar se o SYSTEM_PROMPT foi carregado corretamente
+    
+    // Verify if the SYSTEM_PROMPT was loaded correctly
     if system_prompt.is_empty() {
         error!("SYSTEM_PROMPT is empty!");
         return Err("SYSTEM_PROMPT is empty".into());
     }
-
     debug!("System prompt loaded: {}", system_prompt);
 
     let client = Client::new();
@@ -42,17 +42,14 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             "content": system_prompt
         })
     ];
-
     debug!("Initial system message set");
 
     loop {
         print!("\nYOU:\n");
         io::stdout().flush()?;
-
         let mut user_input = String::new();
         io::stdin().read_line(&mut user_input)?;
         let user_input = user_input.trim();
-
         info!("User input: {}", user_input);
 
         if user_input.eq_ignore_ascii_case("exit") {
@@ -60,11 +57,33 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             break;
         }
 
+        // Check for trigger words
+        if triggers::contains_trigger_word(user_input) {
+            println!("Trigger identified. Generating image...");
+            info!("Trigger word detected in user input. Generating image.");
+            
+            match generate::generate_image(user_input).await {
+                Ok(image_url) => {
+                    println!("Image generated successfully. URL: {}", image_url);
+                    info!("Image generated. URL: {}", image_url);
+                    
+                    // Add the image information to the conversation
+                    messages.push(json!({
+                        "role": "assistant",
+                        "content": format!("I've generated an image based on your request. You can view it here: {}", image_url)
+                    }));
+                },
+                Err(e) => {
+                    println!("Failed to generate image: {}", e);
+                    error!("Image generation failed: {}", e);
+                }
+            }
+        }
+
         messages.push(json!({
             "role": "user",
             "content": user_input
         }));
-
         debug!("Added user message to context");
 
         // Trim messages to keep only the last MAX_CONTEXT_MESSAGES
@@ -82,7 +101,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             "stop": null,
             "stream": false
         });
-
         debug!("Prepared payload for API request");
 
         let response = client.post("https://api.groq.com/openai/v1/chat/completions")
@@ -91,12 +109,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             .json(&payload)
             .send()
             .await?;
-
         debug!("Sent request to Groq API");
 
         let body = response.text().await?;
         let json: Value = serde_json::from_str(&body)?;
-
         debug!("Received and parsed response from Groq API");
 
         if let Some(choices) = json["choices"].as_array() {
@@ -106,12 +122,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                         let content = content.as_str().unwrap_or("");
                         println!("\nFANA:\n{}", content);
                         info!("Fana response: {}", content);
-
                         messages.push(json!({
                             "role": "assistant",
                             "content": content
                         }));
-
                         debug!("Added assistant message to context");
                     }
                 }
@@ -121,6 +135,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     }
 
-    info!("Shutting down Fana AI assistant");
+    info!("Shutting down Fana AI backend");
     Ok(())
 }
+
+
