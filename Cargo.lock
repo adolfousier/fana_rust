@@ -317,6 +317,7 @@ dependencies = [
  "log",
  "log4rs",
  "openai-rust",
+ "regex",
  "reqwest 0.12.5",
  "serde",
  "serde_json",

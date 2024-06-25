@@ -1,7 +1,7 @@
-// main.rs
 mod system_prompt;
 mod triggers_generate;
 mod generate;
+mod analyze;
 
 use std::env;
 use log::{info, debug, error};
@@ -11,8 +11,16 @@ use std::io::{self, Write};
 use reqwest::Client;
 use serde_json::{json, Value};
 use dotenv::dotenv;
+use generate::generate_image;
+use analyze::analyze_image;
+use regex::Regex;
 
 const MAX_CONTEXT_MESSAGES: usize = 10;
+
+fn contains_url(text: &str) -> Option<&str> {
+    let url_regex = Regex::new(r"https?://[^\s]+").unwrap();
+    url_regex.find(text).map(|m| m.as_str())
+}
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -57,84 +65,103 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             break;
         }
 
-        // Check for trigger words
-        if triggers_generate::contains_trigger_word(user_input) {
+        // Check for URLs in the user input
+        if let Some(url) = contains_url(user_input) {
+            info!("URL detected in user input. Analyzing image: {}", url);
+
+            match analyze_image(url).await {
+                Ok(analysis) => {
+                    println!("\nFANA:\nImage analysis: {}", analysis);
+                    info!("Image analysis: {}", analysis);
+                    
+                    // Add the analysis result to the conversation
+                    messages.push(json!({
+                        "role": "assistant",
+                        "content": analysis
+                    }));
+                },
+                Err(e) => {
+                    println!("\nFANA:\n{}", e);
+                    error!("Image analysis failed: {}", e);
+                }
+            }
+        } else if triggers_generate::contains_trigger_word(user_input) {
             info!("Trigger word detected in user input. Generating image.");
             
-            match generate::generate_image(user_input).await {
+            match generate_image(user_input).await {
                 Ok(image_url) => {
+                    println!("\nFANA:\n{}", image_url);
                     info!("Image generated. URL: {}", image_url);
                     
                     // Add the image information to the conversation
                     messages.push(json!({
                         "role": "assistant",
-                        "content": format!("{}", image_url)
+                        "content": format!("I've generated an image based on your request. You can view it here: {}", image_url)
                     }));
                 },
                 Err(e) => {
-                    println!("Failed to generate image: {}", e);
+                    println!("\nFANA:\nFailed to generate image: {}", e);
                     error!("Image generation failed: {}", e);
                 }
             }
-        }
+        } else {
+            messages.push(json!({
+                "role": "user",
+                "content": user_input
+            }));
+            debug!("Added user message to context");
 
-        messages.push(json!({
-            "role": "user",
-            "content": user_input
-        }));
-        debug!("Added user message to context");
+            // Trim messages to keep only the last MAX_CONTEXT_MESSAGES
+            if messages.len() > MAX_CONTEXT_MESSAGES {
+                messages = messages.split_off(messages.len() - MAX_CONTEXT_MESSAGES);
+                debug!("Trimmed context messages to {}", MAX_CONTEXT_MESSAGES);
+            }
 
-        // Trim messages to keep only the last MAX_CONTEXT_MESSAGES
-        if messages.len() > MAX_CONTEXT_MESSAGES {
-            messages = messages.split_off(messages.len() - MAX_CONTEXT_MESSAGES);
-            debug!("Trimmed context messages to {}", MAX_CONTEXT_MESSAGES);
-        }
+            let payload = json!({
+                "model": "mixtral-8x7b-32768",
+                "messages": messages,
+                "temperature": 0.5,
+                "max_tokens": 1024,
+                "top_p": 1,
+                "stop": null,
+                "stream": false
+            });
+            debug!("Prepared payload for API request");
 
-        let payload = json!({
-            "model": "mixtral-8x7b-32768",
-            "messages": messages,
-            "temperature": 0.5,
-            "max_tokens": 1024,
-            "top_p": 1,
-            "stop": null,
-            "stream": false
-        });
-        debug!("Prepared payload for API request");
+            let response = client.post("https://api.groq.com/openai/v1/chat/completions")
+                .header("Content-Type", "application/json")
+                .header("Authorization", format!("Bearer {}", api_key))
+                .json(&payload)
+                .send()
+                .await?;
+            debug!("Sent request to Groq API");
 
-        let response = client.post("https://api.groq.com/openai/v1/chat/completions")
-            .header("Content-Type", "application/json")
-            .header("Authorization", format!("Bearer {}", api_key))
-            .json(&payload)
-            .send()
-            .await?;
-        debug!("Sent request to Groq API");
+            let body = response.text().await?;
+            let json: Value = serde_json::from_str(&body)?;
+            debug!("Received and parsed response from Groq API");
 
-        let body = response.text().await?;
-        let json: Value = serde_json::from_str(&body)?;
-        debug!("Received and parsed response from Groq API");
-
-        if let Some(choices) = json["choices"].as_array() {
-            if let Some(choice) = choices.get(0) {
-                if let Some(message) = choice.get("message") {
-                    if let Some(content) = message.get("content") {
-                        let content = content.as_str().unwrap_or("");
-                        println!("\nFANA:\n{}", content);
-                        info!("Fana response: {}", content);
-                        messages.push(json!({
-                            "role": "assistant",
-                            "content": content
-                        }));
-                        debug!("Added assistant message to context");
+            if let Some(choices) = json["choices"].as_array() {
+                if let Some(choice) = choices.get(0) {
+                    if let Some(message) = choice.get("message") {
+                        if let Some(content) = message.get("content") {
+                            let content = content.as_str().unwrap_or("");
+                            println!("\nFANA:\n{}", content);
+                            info!("Fana response: {}", content);
+                            messages.push(json!({
+                                "role": "assistant",
+                                "content": content
+                            }));
+                            debug!("Added assistant message to context");
+                        }
                     }
                 }
+            } else {
+                error!("Failed to parse Groq API response");
             }
-        } else {
-            error!("Failed to parse Groq API response");
         }
     }
 
     info!("Shutting down Fana AI backend");
     Ok(())
 }
-
 
