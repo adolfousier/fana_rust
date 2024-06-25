@@ -1,4 +1,3 @@
-// generate.rs
 use reqwest::Client;
 use serde::{Deserialize, Serialize};
 use std::env;
@@ -20,12 +19,18 @@ struct ImageData {
     url: String,
 }
 
-pub async fn generate_image(prompt: &str) -> Result<String, Box<dyn std::error::Error>> {
+fn generation_prompt(user_input: &str) -> String {
+    format!("Create a visually stunning and detailed image based on the following prompt: {}", user_input)
+}
+
+pub async fn generate_image(user_input: &str) -> Result<String, Box<dyn std::error::Error>> {
     let api_key = env::var("OPENAI_API_KEY").expect("OPENAI_API_KEY not set");
     let client = Client::new();
 
+    let prompt = generation_prompt(user_input);
+
     let request = CreateImageRequest {
-        prompt: prompt.to_string(),
+        prompt,
         n: 1,
         size: "1024x1024".to_string(),
     };

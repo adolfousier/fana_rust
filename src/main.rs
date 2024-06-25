@@ -1,6 +1,6 @@
 // main.rs
 mod system_prompt;
-mod triggers;
+mod triggers_generate;
 mod generate;
 
 use std::env;
@@ -58,13 +58,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
 
         // Check for trigger words
-        if triggers::contains_trigger_word(user_input) {
-            println!("Trigger identified. Generating image...");
+        if triggers_generate::contains_trigger_word(user_input) {
             info!("Trigger word detected in user input. Generating image.");
             
             match generate::generate_image(user_input).await {
                 Ok(image_url) => {
-                    println!("Image generated successfully. URL: {}", image_url);
                     info!("Image generated. URL: {}", image_url);
                     
                     // Add the image information to the conversation
