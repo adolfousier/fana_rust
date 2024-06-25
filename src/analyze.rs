@@ -1,7 +1,7 @@
 use reqwest::Client;
 use serde::{Deserialize, Serialize};
 use std::env;
-use log::{debug, error};
+use log::{info, debug, error};
 
 #[derive(Serialize, Debug)]
 struct AnalyzeImageRequest {
@@ -107,9 +107,9 @@ pub async fn analyze_image(image_url: &str) -> Result<String, Box<dyn std::error
         debug!("Parsed response: {:?}", analyze_response);
 
         if let Some(usage) = &analyze_response.usage {
-            debug!("Prompt tokens: {}", usage.prompt_tokens);
-            debug!("Completion tokens: {}", usage.completion_tokens);
-            debug!("Total tokens: {}", usage.total_tokens);
+            info!("Prompt tokens: {}", usage.prompt_tokens);
+            info!("Completion tokens: {}", usage.completion_tokens);
+            info!("Total tokens: {}", usage.total_tokens);
         }
 
         if let Some(choice) = analyze_response.choices.first() {

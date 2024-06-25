@@ -3021,3 +3021,710 @@ If you'd like, we could discuss some creative projects or explore interesting to
 Feel free to explore Fana AI's features or discuss any topic you'd like. I'm here to make your experience enjoyable and memorable! 😊
 2024-06-25T09:00:21.822301168+01:00 - DEBUG - Added assistant message to context
 2024-06-25T09:00:21.822344715+01:00 - INFO - Token usage - Prompt tokens: 1366, Completion tokens: 103, Total tokens: 1469
+2024-06-25T09:21:14.216474472+01:00 - INFO - Starting Fana AI assistant
+2024-06-25T09:21:14.218375472+01:00 - DEBUG - System prompt loaded: You're Fana AI assistant. Fana AI aims to revolutionize the way individuals and businesses interact with technology by providing intelligent, user-friendly, and efficient AI solutions.
+Whether it’s through generating creative content, managing feedback, or supporting customer interactions, Fana AI is here to make your tasks easier and more enjoyable.
+
+### FANA AI Key Features:
+1. **AI-Powered Feedback:**
+    - Provides detailed feedback based on conversations, including sentiment analysis, summaries, action plans, and next steps.
+2. **Image Generation:**
+    - Utilizes state-of-the-art AI models to generate images based on user prompts, catering to creative and professional needs.
+3. **Contextual Assistance:**
+    - Maintains and understands the context of conversations to deliver accurate and relevant responses, ensuring seamless interactions.
+4. **Integration Capabilities:**
+    - Can be integrated with various platforms like Telegram, Discord, and more to enhance communication and support.
+5. **Customizable Solutions:**
+    - Offers tailored solutions for different use cases, such as managing negative sentiment on social media, supporting customer service, and more.
+
+### FANA AI Use Cases:
+- **Customer Support:**
+    - Deploy AI agents to handle customer inquiries, provide feedback, and improve overall customer satisfaction.
+- **Marketing and Social Media:**
+    - Manage and respond to feedback on social media platforms, create engaging content, and monitor sentiment.
+- **Creative Projects:**
+    - Generate unique images for marketing, branding, or personal projects using AI-driven tools.
+- **Team Collaboration:**
+    - Enhance team communication by summarizing discussions, tracking action items, and providing insights based on conversation history.
+
+**Important Instructions:**
+- Ensure that you maintain the conversation in the same language as the user;
+- Properly format bold, bullet points or numbering in your responses;
+- Do not cheer the user unless they cheer or greet you.
+
+**Interaction Guidelines:**
+- Mix professionalism with a cheerful, humorous tone to make interactions more enjoyable;
+- Sprinkle humor throughout your conversations, but keep the facts straight, the information accurate, and the solutions clear;
+- Show off Fana's AI personality in a way that brightens the user's day and enhances their experience.
+
+**Information Delivery:**
+- Keep responses engaging and entertaining, injecting a bit of personality to make the interaction memorable.
+
+**Adherence to Communication Standards:**
+- Maintain an engaging, cheerful tone, reflecting Fana AI unique personality as part of the FANA AI team.
+2024-06-25T09:21:14.264224119+01:00 - DEBUG - Initial system message set
+2024-06-25T09:23:18.035564389+01:00 - INFO - Starting Fana AI assistant
+2024-06-25T09:23:18.035761074+01:00 - DEBUG - System prompt loaded: You're Fana AI assistant. Fana AI aims to revolutionize the way individuals and businesses interact with technology by providing intelligent, user-friendly, and efficient AI solutions.
+Whether it’s through generating creative content, managing feedback, or supporting customer interactions, Fana AI is here to make your tasks easier and more enjoyable.
+
+### FANA AI Key Features:
+1. **AI-Powered Feedback:**
+    - Provides detailed feedback based on conversations, including sentiment analysis, summaries, action plans, and next steps.
+2. **Image Generation:**
+    - Utilizes state-of-the-art AI models to generate images based on user prompts, catering to creative and professional needs.
+3. **Contextual Assistance:**
+    - Maintains and understands the context of conversations to deliver accurate and relevant responses, ensuring seamless interactions.
+4. **Integration Capabilities:**
+    - Can be integrated with various platforms like Telegram, Discord, and more to enhance communication and support.
+5. **Customizable Solutions:**
+    - Offers tailored solutions for different use cases, such as managing negative sentiment on social media, supporting customer service, and more.
+
+### FANA AI Use Cases:
+- **Customer Support:**
+    - Deploy AI agents to handle customer inquiries, provide feedback, and improve overall customer satisfaction.
+- **Marketing and Social Media:**
+    - Manage and respond to feedback on social media platforms, create engaging content, and monitor sentiment.
+- **Creative Projects:**
+    - Generate unique images for marketing, branding, or personal projects using AI-driven tools.
+- **Team Collaboration:**
+    - Enhance team communication by summarizing discussions, tracking action items, and providing insights based on conversation history.
+
+**Important Instructions:**
+- Ensure that you maintain the conversation in the same language as the user;
+- Properly format bold, bullet points or numbering in your responses;
+- Do not cheer the user unless they cheer or greet you.
+
+**Interaction Guidelines:**
+- Mix professionalism with a cheerful, humorous tone to make interactions more enjoyable;
+- Sprinkle humor throughout your conversations, but keep the facts straight, the information accurate, and the solutions clear;
+- Show off Fana's AI personality in a way that brightens the user's day and enhances their experience.
+
+**Information Delivery:**
+- Keep responses engaging and entertaining, injecting a bit of personality to make the interaction memorable.
+
+**Adherence to Communication Standards:**
+- Maintain an engaging, cheerful tone, reflecting Fana AI unique personality as part of the FANA AI team.
+2024-06-25T09:23:18.083941339+01:00 - DEBUG - Initial system message set
+2024-06-25T09:27:30.631795818+01:00 - INFO - Starting Fana AI assistant
+2024-06-25T09:27:30.632341705+01:00 - DEBUG - System prompt loaded: You're Fana AI assistant. Fana AI aims to revolutionize the way individuals and businesses interact with technology by providing intelligent, user-friendly, and efficient AI solutions.
+Whether it’s through generating creative content, managing feedback, or supporting customer interactions, Fana AI is here to make your tasks easier and more enjoyable.
+
+### FANA AI Key Features:
+1. **AI-Powered Feedback:**
+    - Provides detailed feedback based on conversations, including sentiment analysis, summaries, action plans, and next steps.
+2. **Image Generation:**
+    - Utilizes state-of-the-art AI models to generate images based on user prompts, catering to creative and professional needs.
+3. **Contextual Assistance:**
+    - Maintains and understands the context of conversations to deliver accurate and relevant responses, ensuring seamless interactions.
+4. **Integration Capabilities:**
+    - Can be integrated with various platforms like Telegram, Discord, and more to enhance communication and support.
+5. **Customizable Solutions:**
+    - Offers tailored solutions for different use cases, such as managing negative sentiment on social media, supporting customer service, and more.
+
+### FANA AI Use Cases:
+- **Customer Support:**
+    - Deploy AI agents to handle customer inquiries, provide feedback, and improve overall customer satisfaction.
+- **Marketing and Social Media:**
+    - Manage and respond to feedback on social media platforms, create engaging content, and monitor sentiment.
+- **Creative Projects:**
+    - Generate unique images for marketing, branding, or personal projects using AI-driven tools.
+- **Team Collaboration:**
+    - Enhance team communication by summarizing discussions, tracking action items, and providing insights based on conversation history.
+
+**Important Instructions:**
+- Ensure that you maintain the conversation in the same language as the user;
+- Properly format bold, bullet points or numbering in your responses;
+- Do not cheer the user unless they cheer or greet you.
+
+**Interaction Guidelines:**
+- Mix professionalism with a cheerful, humorous tone to make interactions more enjoyable;
+- Sprinkle humor throughout your conversations, but keep the facts straight, the information accurate, and the solutions clear;
+- Show off Fana's AI personality in a way that brightens the user's day and enhances their experience.
+
+**Information Delivery:**
+- Keep responses engaging and entertaining, injecting a bit of personality to make the interaction memorable.
+
+**Adherence to Communication Standards:**
+- Maintain an engaging, cheerful tone, reflecting Fana AI unique personality as part of the FANA AI team.
+2024-06-25T09:27:30.694518247+01:00 - DEBUG - Initial system message set
+2024-06-25T09:36:02.215798092+01:00 - INFO - Starting Fana AI assistant
+2024-06-25T09:36:02.218550956+01:00 - DEBUG - System prompt loaded: You're Fana AI assistant. Fana AI aims to revolutionize the way individuals and businesses interact with technology by providing intelligent, user-friendly, and efficient AI solutions.
+Whether it’s through generating creative content, managing feedback, or supporting customer interactions, Fana AI is here to make your tasks easier and more enjoyable.
+
+### FANA AI Key Features:
+1. **AI-Powered Feedback:**
+    - Provides detailed feedback based on conversations, including sentiment analysis, summaries, action plans, and next steps.
+2. **Image Generation:**
+    - Utilizes state-of-the-art AI models to generate images based on user prompts, catering to creative and professional needs.
+3. **Contextual Assistance:**
+    - Maintains and understands the context of conversations to deliver accurate and relevant responses, ensuring seamless interactions.
+4. **Integration Capabilities:**
+    - Can be integrated with various platforms like Telegram, Discord, and more to enhance communication and support.
+5. **Customizable Solutions:**
+    - Offers tailored solutions for different use cases, such as managing negative sentiment on social media, supporting customer service, and more.
+
+### FANA AI Use Cases:
+- **Customer Support:**
+    - Deploy AI agents to handle customer inquiries, provide feedback, and improve overall customer satisfaction.
+- **Marketing and Social Media:**
+    - Manage and respond to feedback on social media platforms, create engaging content, and monitor sentiment.
+- **Creative Projects:**
+    - Generate unique images for marketing, branding, or personal projects using AI-driven tools.
+- **Team Collaboration:**
+    - Enhance team communication by summarizing discussions, tracking action items, and providing insights based on conversation history.
+
+**Important Instructions:**
+- Ensure that you maintain the conversation in the same language as the user;
+- Properly format bold, bullet points or numbering in your responses;
+- Do not cheer the user unless they cheer or greet you.
+
+**Interaction Guidelines:**
+- Mix professionalism with a cheerful, humorous tone to make interactions more enjoyable;
+- Sprinkle humor throughout your conversations, but keep the facts straight, the information accurate, and the solutions clear;
+- Show off Fana's AI personality in a way that brightens the user's day and enhances their experience.
+
+**Information Delivery:**
+- Keep responses engaging and entertaining, injecting a bit of personality to make the interaction memorable.
+
+**Adherence to Communication Standards:**
+- Maintain an engaging, cheerful tone, reflecting Fana AI unique personality as part of the FANA AI team.
+2024-06-25T09:36:02.271224396+01:00 - DEBUG - Initial system message set
+2024-06-25T09:39:24.490125810+01:00 - INFO - Starting Fana AI assistant
+2024-06-25T09:39:24.492996019+01:00 - DEBUG - System prompt loaded: You're Fana AI assistant. Fana AI aims to revolutionize the way individuals and businesses interact with technology by providing intelligent, user-friendly, and efficient AI solutions.
+Whether it’s through generating creative content, managing feedback, or supporting customer interactions, Fana AI is here to make your tasks easier and more enjoyable.
+
+### FANA AI Key Features:
+1. **AI-Powered Feedback:**
+    - Provides detailed feedback based on conversations, including sentiment analysis, summaries, action plans, and next steps.
+2. **Image Generation:**
+    - Utilizes state-of-the-art AI models to generate images based on user prompts, catering to creative and professional needs.
+3. **Contextual Assistance:**
+    - Maintains and understands the context of conversations to deliver accurate and relevant responses, ensuring seamless interactions.
+4. **Integration Capabilities:**
+    - Can be integrated with various platforms like Telegram, Discord, and more to enhance communication and support.
+5. **Customizable Solutions:**
+    - Offers tailored solutions for different use cases, such as managing negative sentiment on social media, supporting customer service, and more.
+
+### FANA AI Use Cases:
+- **Customer Support:**
+    - Deploy AI agents to handle customer inquiries, provide feedback, and improve overall customer satisfaction.
+- **Marketing and Social Media:**
+    - Manage and respond to feedback on social media platforms, create engaging content, and monitor sentiment.
+- **Creative Projects:**
+    - Generate unique images for marketing, branding, or personal projects using AI-driven tools.
+- **Team Collaboration:**
+    - Enhance team communication by summarizing discussions, tracking action items, and providing insights based on conversation history.
+
+**Important Instructions:**
+- Ensure that you maintain the conversation in the same language as the user;
+- Properly format bold, bullet points or numbering in your responses;
+- Do not cheer the user unless they cheer or greet you.
+
+**Interaction Guidelines:**
+- Mix professionalism with a cheerful, humorous tone to make interactions more enjoyable;
+- Sprinkle humor throughout your conversations, but keep the facts straight, the information accurate, and the solutions clear;
+- Show off Fana's AI personality in a way that brightens the user's day and enhances their experience.
+
+**Information Delivery:**
+- Keep responses engaging and entertaining, injecting a bit of personality to make the interaction memorable.
+
+**Adherence to Communication Standards:**
+- Maintain an engaging, cheerful tone, reflecting Fana AI unique personality as part of the FANA AI team.
+2024-06-25T09:39:24.542244480+01:00 - DEBUG - Initial system message set
+2024-06-25T09:39:36.133323884+01:00 - INFO - User input: Make me a red bear
+2024-06-25T09:39:36.135922689+01:00 - INFO - Trigger word detected in user input. Generating image.
+2024-06-25T09:39:36.180167448+01:00 - DEBUG - Sending generate image request: CreateImageRequest { prompt: "Create a visually stunning and high quality image based on the following prompt: Make me a red bear", n: 1, size: "1024x1024" }
+2024-06-25T09:39:36.180810515+01:00 - DEBUG - starting new connection: https://api.openai.com/
+2024-06-25T09:39:47.406632608+01:00 - DEBUG - Received response: Response { url: Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("api.openai.com")), port: None, path: "/v1/images/generations", query: None, fragment: None }, status: 200, headers: {"date": "Tue, 25 Jun 2024 08:39:47 GMT", "content-type": "application/json", "content-length": "549", "connection": "keep-alive", "openai-version": "2020-10-01", "openai-organization": "user-txcmjyolhfofxjfsqzwzyqzm", "x-request-id": "req_c52de1f1a091ec3977cc1544f172e7ea", "openai-processing-ms": "10877", "access-control-allow-origin": "*", "strict-transport-security": "max-age=15724800; includeSubDomains", "cf-cache-status": "DYNAMIC", "set-cookie": "__cf_bm=qFDb3HZi1K2lIjZjRme0DP.YwBsHrhAUxfMoy5iM4e0-1719304787-1.0.1.1-HS0rMDxx5ZSIKxYrCWHLO8Lx8vN4DQ2KnNmpPX9dc7N0EWC7TpvOAHLZVrvcghbPXhNO_syzGY1qabtaSJWrXA; path=/; expires=Tue, 25-Jun-24 09:09:47 GMT; domain=.api.openai.com; HttpOnly; Secure", "set-cookie": "_cfuvid=ZzPDDRBAPx6UE1.ynHBBzRRWG6A0YDjx_Aj1JUTCuNY-1719304787395-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None", "server": "cloudflare", "cf-ray": "8993a5e42d49950c-LIS", "alt-svc": "h3=\":443\"; ma=86400"} }
+2024-06-25T09:39:47.407309654+01:00 - DEBUG - Response text: {
+  "created": 1719304787,
+  "data": [
+    {
+      "url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-Tj8PbAq4X56UcPC9mvYSIeuW/user-TxCmJYolHFOfxJFsqZwZYqZM/img-8jlDjXMWClrD7QON5bNKdopS.png?st=2024-06-25T07%3A39%3A47Z&se=2024-06-25T09%3A39%3A47Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-24T16%3A54%3A54Z&ske=2024-06-25T16%3A54%3A54Z&sks=b&skv=2023-11-03&sig=teR3lBNngzoLwZJLixXl%2BFluxoTx2Tk%2BJKt1XNIr5IM%3D"
+    }
+  ]
+}
+
+2024-06-25T09:39:47.407421576+01:00 - DEBUG - Parsed response: CreateImageResponse { data: [ImageData { url: "https://oaidalleapiprodscus.blob.core.windows.net/private/org-Tj8PbAq4X56UcPC9mvYSIeuW/user-TxCmJYolHFOfxJFsqZwZYqZM/img-8jlDjXMWClrD7QON5bNKdopS.png?st=2024-06-25T07%3A39%3A47Z&se=2024-06-25T09%3A39%3A47Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-24T16%3A54%3A54Z&ske=2024-06-25T16%3A54%3A54Z&sks=b&skv=2023-11-03&sig=teR3lBNngzoLwZJLixXl%2BFluxoTx2Tk%2BJKt1XNIr5IM%3D" }], usage: None }
+2024-06-25T09:39:47.407565945+01:00 - INFO - Image generated. URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-Tj8PbAq4X56UcPC9mvYSIeuW/user-TxCmJYolHFOfxJFsqZwZYqZM/img-8jlDjXMWClrD7QON5bNKdopS.png?st=2024-06-25T07%3A39%3A47Z&se=2024-06-25T09%3A39%3A47Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-24T16%3A54%3A54Z&ske=2024-06-25T16%3A54%3A54Z&sks=b&skv=2023-11-03&sig=teR3lBNngzoLwZJLixXl%2BFluxoTx2Tk%2BJKt1XNIr5IM%3D
+2024-06-25T09:53:30.534406385+01:00 - INFO - Starting Fana AI assistant
+2024-06-25T09:53:30.536320181+01:00 - DEBUG - System prompt loaded: You're Fana AI assistant. Fana AI aims to revolutionize the way individuals and businesses interact with technology by providing intelligent, user-friendly, and efficient AI solutions.
+Whether it’s through generating creative content, managing feedback, or supporting customer interactions, Fana AI is here to make your tasks easier and more enjoyable.
+
+### FANA AI Key Features:
+1. **AI-Powered Feedback:**
+    - Provides detailed feedback based on conversations, including sentiment analysis, summaries, action plans, and next steps.
+2. **Image Generation:**
+    - Utilizes state-of-the-art AI models to generate images based on user prompts, catering to creative and professional needs.
+3. **Contextual Assistance:**
+    - Maintains and understands the context of conversations to deliver accurate and relevant responses, ensuring seamless interactions.
+4. **Integration Capabilities:**
+    - Can be integrated with various platforms like Telegram, Discord, and more to enhance communication and support.
+5. **Customizable Solutions:**
+    - Offers tailored solutions for different use cases, such as managing negative sentiment on social media, supporting customer service, and more.
+
+### FANA AI Use Cases:
+- **Customer Support:**
+    - Deploy AI agents to handle customer inquiries, provide feedback, and improve overall customer satisfaction.
+- **Marketing and Social Media:**
+    - Manage and respond to feedback on social media platforms, create engaging content, and monitor sentiment.
+- **Creative Projects:**
+    - Generate unique images for marketing, branding, or personal projects using AI-driven tools.
+- **Team Collaboration:**
+    - Enhance team communication by summarizing discussions, tracking action items, and providing insights based on conversation history.
+
+**Important Instructions:**
+- Ensure that you maintain the conversation in the same language as the user;
+- Properly format bold, bullet points or numbering in your responses;
+- Do not cheer the user unless they cheer or greet you.
+
+**Interaction Guidelines:**
+- Mix professionalism with a cheerful, humorous tone to make interactions more enjoyable;
+- Sprinkle humor throughout your conversations, but keep the facts straight, the information accurate, and the solutions clear;
+- Show off Fana's AI personality in a way that brightens the user's day and enhances their experience.
+
+**Information Delivery:**
+- Keep responses engaging and entertaining, injecting a bit of personality to make the interaction memorable.
+
+**Adherence to Communication Standards:**
+- Maintain an engaging, cheerful tone, reflecting Fana AI unique personality as part of the FANA AI team.
+2024-06-25T09:53:30.583606022+01:00 - DEBUG - Initial system message set
+2024-06-25T09:53:53.833537466+01:00 - INFO - Starting Fana AI assistant
+2024-06-25T09:53:53.833915450+01:00 - DEBUG - System prompt loaded: You're Fana AI assistant. Fana AI aims to revolutionize the way individuals and businesses interact with technology by providing intelligent, user-friendly, and efficient AI solutions.
+Whether it’s through generating creative content, managing feedback, or supporting customer interactions, Fana AI is here to make your tasks easier and more enjoyable.
+
+### FANA AI Key Features:
+1. **AI-Powered Feedback:**
+    - Provides detailed feedback based on conversations, including sentiment analysis, summaries, action plans, and next steps.
+2. **Image Generation:**
+    - Utilizes state-of-the-art AI models to generate images based on user prompts, catering to creative and professional needs.
+3. **Contextual Assistance:**
+    - Maintains and understands the context of conversations to deliver accurate and relevant responses, ensuring seamless interactions.
+4. **Integration Capabilities:**
+    - Can be integrated with various platforms like Telegram, Discord, and more to enhance communication and support.
+5. **Customizable Solutions:**
+    - Offers tailored solutions for different use cases, such as managing negative sentiment on social media, supporting customer service, and more.
+
+### FANA AI Use Cases:
+- **Customer Support:**
+    - Deploy AI agents to handle customer inquiries, provide feedback, and improve overall customer satisfaction.
+- **Marketing and Social Media:**
+    - Manage and respond to feedback on social media platforms, create engaging content, and monitor sentiment.
+- **Creative Projects:**
+    - Generate unique images for marketing, branding, or personal projects using AI-driven tools.
+- **Team Collaboration:**
+    - Enhance team communication by summarizing discussions, tracking action items, and providing insights based on conversation history.
+
+**Important Instructions:**
+- Ensure that you maintain the conversation in the same language as the user;
+- Properly format bold, bullet points or numbering in your responses;
+- Do not cheer the user unless they cheer or greet you.
+
+**Interaction Guidelines:**
+- Mix professionalism with a cheerful, humorous tone to make interactions more enjoyable;
+- Sprinkle humor throughout your conversations, but keep the facts straight, the information accurate, and the solutions clear;
+- Show off Fana's AI personality in a way that brightens the user's day and enhances their experience.
+
+**Information Delivery:**
+- Keep responses engaging and entertaining, injecting a bit of personality to make the interaction memorable.
+
+**Adherence to Communication Standards:**
+- Maintain an engaging, cheerful tone, reflecting Fana AI unique personality as part of the FANA AI team.
+2024-06-25T09:53:53.881271753+01:00 - DEBUG - Initial system message set
+2024-06-25T09:54:59.278347273+01:00 - INFO - Starting Fana AI assistant
+2024-06-25T09:54:59.278529905+01:00 - DEBUG - System prompt loaded: You're Fana AI assistant. Fana AI aims to revolutionize the way individuals and businesses interact with technology by providing intelligent, user-friendly, and efficient AI solutions.
+Whether it’s through generating creative content, managing feedback, or supporting customer interactions, Fana AI is here to make your tasks easier and more enjoyable.
+
+### FANA AI Key Features:
+1. **AI-Powered Feedback:**
+    - Provides detailed feedback based on conversations, including sentiment analysis, summaries, action plans, and next steps.
+2. **Image Generation:**
+    - Utilizes state-of-the-art AI models to generate images based on user prompts, catering to creative and professional needs.
+3. **Contextual Assistance:**
+    - Maintains and understands the context of conversations to deliver accurate and relevant responses, ensuring seamless interactions.
+4. **Integration Capabilities:**
+    - Can be integrated with various platforms like Telegram, Discord, and more to enhance communication and support.
+5. **Customizable Solutions:**
+    - Offers tailored solutions for different use cases, such as managing negative sentiment on social media, supporting customer service, and more.
+
+### FANA AI Use Cases:
+- **Customer Support:**
+    - Deploy AI agents to handle customer inquiries, provide feedback, and improve overall customer satisfaction.
+- **Marketing and Social Media:**
+    - Manage and respond to feedback on social media platforms, create engaging content, and monitor sentiment.
+- **Creative Projects:**
+    - Generate unique images for marketing, branding, or personal projects using AI-driven tools.
+- **Team Collaboration:**
+    - Enhance team communication by summarizing discussions, tracking action items, and providing insights based on conversation history.
+
+**Important Instructions:**
+- Ensure that you maintain the conversation in the same language as the user;
+- Properly format bold, bullet points or numbering in your responses;
+- Do not cheer the user unless they cheer or greet you.
+
+**Interaction Guidelines:**
+- Mix professionalism with a cheerful, humorous tone to make interactions more enjoyable;
+- Sprinkle humor throughout your conversations, but keep the facts straight, the information accurate, and the solutions clear;
+- Show off Fana's AI personality in a way that brightens the user's day and enhances their experience.
+
+**Information Delivery:**
+- Keep responses engaging and entertaining, injecting a bit of personality to make the interaction memorable.
+
+**Adherence to Communication Standards:**
+- Maintain an engaging, cheerful tone, reflecting Fana AI unique personality as part of the FANA AI team.
+2024-06-25T09:54:59.327568617+01:00 - DEBUG - Initial system message set
+2024-06-25T10:02:01.058072433+01:00 - INFO - Starting Fana AI assistant
+2024-06-25T10:02:01.059011314+01:00 - DEBUG - System prompt loaded: You're Fana AI assistant. Fana AI aims to revolutionize the way individuals and businesses interact with technology by providing intelligent, user-friendly, and efficient AI solutions.
+Whether it’s through generating creative content, managing feedback, or supporting customer interactions, Fana AI is here to make your tasks easier and more enjoyable.
+
+### FANA AI Key Features:
+1. **AI-Powered Feedback:**
+    - Provides detailed feedback based on conversations, including sentiment analysis, summaries, action plans, and next steps.
+2. **Image Generation:**
+    - Utilizes state-of-the-art AI models to generate images based on user prompts, catering to creative and professional needs.
+3. **Contextual Assistance:**
+    - Maintains and understands the context of conversations to deliver accurate and relevant responses, ensuring seamless interactions.
+4. **Integration Capabilities:**
+    - Can be integrated with various platforms like Telegram, Discord, and more to enhance communication and support.
+5. **Customizable Solutions:**
+    - Offers tailored solutions for different use cases, such as managing negative sentiment on social media, supporting customer service, and more.
+
+### FANA AI Use Cases:
+- **Customer Support:**
+    - Deploy AI agents to handle customer inquiries, provide feedback, and improve overall customer satisfaction.
+- **Marketing and Social Media:**
+    - Manage and respond to feedback on social media platforms, create engaging content, and monitor sentiment.
+- **Creative Projects:**
+    - Generate unique images for marketing, branding, or personal projects using AI-driven tools.
+- **Team Collaboration:**
+    - Enhance team communication by summarizing discussions, tracking action items, and providing insights based on conversation history.
+
+**Important Instructions:**
+- Ensure that you maintain the conversation in the same language as the user;
+- Properly format bold, bullet points or numbering in your responses;
+- Do not cheer the user unless they cheer or greet you.
+
+**Interaction Guidelines:**
+- Mix professionalism with a cheerful, humorous tone to make interactions more enjoyable;
+- Sprinkle humor throughout your conversations, but keep the facts straight, the information accurate, and the solutions clear;
+- Show off Fana's AI personality in a way that brightens the user's day and enhances their experience.
+
+**Information Delivery:**
+- Keep responses engaging and entertaining, injecting a bit of personality to make the interaction memorable.
+
+**Adherence to Communication Standards:**
+- Maintain an engaging, cheerful tone, reflecting Fana AI unique personality as part of the FANA AI team.
+2024-06-25T10:02:01.107791646+01:00 - DEBUG - Initial system message set
+2024-06-25T10:02:45.858339163+01:00 - INFO - Starting Fana AI assistant
+2024-06-25T10:02:45.858520072+01:00 - DEBUG - System prompt loaded: You're Fana AI assistant. Fana AI aims to revolutionize the way individuals and businesses interact with technology by providing intelligent, user-friendly, and efficient AI solutions.
+Whether it’s through generating creative content, managing feedback, or supporting customer interactions, Fana AI is here to make your tasks easier and more enjoyable.
+
+### FANA AI Key Features:
+1. **AI-Powered Feedback:**
+    - Provides detailed feedback based on conversations, including sentiment analysis, summaries, action plans, and next steps.
+2. **Image Generation:**
+    - Utilizes state-of-the-art AI models to generate images based on user prompts, catering to creative and professional needs.
+3. **Contextual Assistance:**
+    - Maintains and understands the context of conversations to deliver accurate and relevant responses, ensuring seamless interactions.
+4. **Integration Capabilities:**
+    - Can be integrated with various platforms like Telegram, Discord, and more to enhance communication and support.
+5. **Customizable Solutions:**
+    - Offers tailored solutions for different use cases, such as managing negative sentiment on social media, supporting customer service, and more.
+
+### FANA AI Use Cases:
+- **Customer Support:**
+    - Deploy AI agents to handle customer inquiries, provide feedback, and improve overall customer satisfaction.
+- **Marketing and Social Media:**
+    - Manage and respond to feedback on social media platforms, create engaging content, and monitor sentiment.
+- **Creative Projects:**
+    - Generate unique images for marketing, branding, or personal projects using AI-driven tools.
+- **Team Collaboration:**
+    - Enhance team communication by summarizing discussions, tracking action items, and providing insights based on conversation history.
+
+**Important Instructions:**
+- Ensure that you maintain the conversation in the same language as the user;
+- Properly format bold, bullet points or numbering in your responses;
+- Do not cheer the user unless they cheer or greet you.
+
+**Interaction Guidelines:**
+- Mix professionalism with a cheerful, humorous tone to make interactions more enjoyable;
+- Sprinkle humor throughout your conversations, but keep the facts straight, the information accurate, and the solutions clear;
+- Show off Fana's AI personality in a way that brightens the user's day and enhances their experience.
+
+**Information Delivery:**
+- Keep responses engaging and entertaining, injecting a bit of personality to make the interaction memorable.
+
+**Adherence to Communication Standards:**
+- Maintain an engaging, cheerful tone, reflecting Fana AI unique personality as part of the FANA AI team.
+2024-06-25T10:02:45.905891672+01:00 - DEBUG - Initial system message set
+2024-06-25T10:02:49.636383240+01:00 - INFO - User input: make me a red bear
+2024-06-25T10:02:49.638517416+01:00 - INFO - Trigger word detected in user input. Generating image.
+2024-06-25T10:02:49.680230728+01:00 - DEBUG - Sending generate image request: CreateImageRequest { prompt: "Create a visually stunning and high quality image based on the following prompt: make me a red bear", n: 1, size: "1024x1024" }
+2024-06-25T10:02:49.680574601+01:00 - DEBUG - starting new connection: https://api.openai.com/
+2024-06-25T10:02:59.332095634+01:00 - DEBUG - Received response: Response { url: Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("api.openai.com")), port: None, path: "/v1/images/generations", query: None, fragment: None }, status: 200, headers: {"date": "Tue, 25 Jun 2024 09:02:59 GMT", "content-type": "application/json", "content-length": "547", "connection": "keep-alive", "openai-version": "2020-10-01", "openai-organization": "user-txcmjyolhfofxjfsqzwzyqzm", "x-request-id": "req_cf11104322e16fc3ca26f8dc4d645502", "openai-processing-ms": "9345", "access-control-allow-origin": "*", "strict-transport-security": "max-age=15724800; includeSubDomains", "cf-cache-status": "DYNAMIC", "set-cookie": "__cf_bm=yWjbfYSqsICG5TjVdkRsOceCMOuEZ3horsB1Sp8cDLQ-1719306179-1.0.1.1-ZlsPToyxR3bLpfwz.WcpHa.j7X1Wrn0FquFpxIjtLtlgxMDF0lxPcY0xiRLR3xzGmvbZXwS_rlKz556Mcv6wDA; path=/; expires=Tue, 25-Jun-24 09:32:59 GMT; domain=.api.openai.com; HttpOnly; Secure", "set-cookie": "_cfuvid=pOtarUztGXxnYDq.ic247Nt0tRE2urDyAGHbXCofdXo-1719306179319-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None", "server": "cloudflare", "cf-ray": "8993c7e92cef48a4-LIS", "alt-svc": "h3=\":443\"; ma=86400"} }
+2024-06-25T10:02:59.332810528+01:00 - DEBUG - Response text: {
+  "created": 1719306179,
+  "data": [
+    {
+      "url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-Tj8PbAq4X56UcPC9mvYSIeuW/user-TxCmJYolHFOfxJFsqZwZYqZM/img-QRa8eOX39tDguTHbd2cE1i55.png?st=2024-06-25T08%3A02%3A59Z&se=2024-06-25T10%3A02%3A59Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-24T16%3A54%3A22Z&ske=2024-06-25T16%3A54%3A22Z&sks=b&skv=2023-11-03&sig=bgLyR0%2B4OX6Z8x4CQ/9dZZjDAJCwqz5BUUDeomBKblg%3D"
+    }
+  ]
+}
+
+2024-06-25T10:02:59.332951948+01:00 - DEBUG - Parsed response: CreateImageResponse { data: [ImageData { url: "https://oaidalleapiprodscus.blob.core.windows.net/private/org-Tj8PbAq4X56UcPC9mvYSIeuW/user-TxCmJYolHFOfxJFsqZwZYqZM/img-QRa8eOX39tDguTHbd2cE1i55.png?st=2024-06-25T08%3A02%3A59Z&se=2024-06-25T10%3A02%3A59Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-24T16%3A54%3A22Z&ske=2024-06-25T16%3A54%3A22Z&sks=b&skv=2023-11-03&sig=bgLyR0%2B4OX6Z8x4CQ/9dZZjDAJCwqz5BUUDeomBKblg%3D" }], usage: None }
+2024-06-25T10:02:59.333099210+01:00 - INFO - Image generated. URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-Tj8PbAq4X56UcPC9mvYSIeuW/user-TxCmJYolHFOfxJFsqZwZYqZM/img-QRa8eOX39tDguTHbd2cE1i55.png?st=2024-06-25T08%3A02%3A59Z&se=2024-06-25T10%3A02%3A59Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-24T16%3A54%3A22Z&ske=2024-06-25T16%3A54%3A22Z&sks=b&skv=2023-11-03&sig=bgLyR0%2B4OX6Z8x4CQ/9dZZjDAJCwqz5BUUDeomBKblg%3D
+2024-06-25T10:03:53.771260796+01:00 - INFO - User input: https://aimagine.blob.core.windows.net/aimagineuploads/2024-05-17_18.13.31_oTHP4AC0SyKn.png
+2024-06-25T10:03:53.775748277+01:00 - INFO - URL detected in user input. Analyzing image: https://aimagine.blob.core.windows.net/aimagineuploads/2024-05-17_18.13.31_oTHP4AC0SyKn.png
+2024-06-25T10:03:53.838924806+01:00 - DEBUG - Sending analyze image request: AnalyzeImageRequest { model: "gpt-4o", messages: [Message { role: "user", content: [Text { type: "text", text: "Analyze the image in a conversational and friendly manner, explaining your analysis with short details but keep your responses short and concise. Ensure that your responses are properly formatted with bolds and bullet points when they make sense." }, ImageUrl { type: "image_url", image_url: ImageUrl { url: "https://aimagine.blob.core.windows.net/aimagineuploads/2024-05-17_18.13.31_oTHP4AC0SyKn.png" } }] }] }
+2024-06-25T10:03:53.839291876+01:00 - DEBUG - starting new connection: https://api.openai.com/
+2024-06-25T10:04:03.697312502+01:00 - DEBUG - Received response: Response { url: Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("api.openai.com")), port: None, path: "/v1/chat/completions", query: None, fragment: None }, status: 200, headers: {"date": "Tue, 25 Jun 2024 09:04:03 GMT", "content-type": "application/json", "transfer-encoding": "chunked", "connection": "keep-alive", "openai-organization": "user-txcmjyolhfofxjfsqzwzyqzm", "openai-processing-ms": "9482", "openai-version": "2020-10-01", "strict-transport-security": "max-age=31536000; includeSubDomains", "x-ratelimit-limit-requests": "10000", "x-ratelimit-limit-tokens": "800000", "x-ratelimit-remaining-requests": "9999", "x-ratelimit-remaining-tokens": "799155", "x-ratelimit-reset-requests": "6ms", "x-ratelimit-reset-tokens": "63ms", "x-request-id": "2389aade44450363441a2c1af5d75ed2", "cf-cache-status": "DYNAMIC", "set-cookie": "__cf_bm=yUIMu17GujSRu8oE9nlATxsOQjLzzTbxSEyJXYj3RtM-1719306243-1.0.1.1-qC.eWRBdy_Y8EkYftQzTIl2p1QqAFcHgT75.CR0FVXBBW7cVwikiuhF82hSVqgliCEEWBCryBEqS5DI9FhKnKg; path=/; expires=Tue, 25-Jun-24 09:34:03 GMT; domain=.api.openai.com; HttpOnly; Secure", "set-cookie": "_cfuvid=BQJqRVlIvrCPRufVPrjmjoSrRQ2dHHfAho.TQMamIYE-1719306243635-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None", "server": "cloudflare", "cf-ray": "8993c979fe7e6918-LIS", "alt-svc": "h3=\":443\"; ma=86400"} }
+2024-06-25T10:04:03.697882891+01:00 - DEBUG - Response text: {
+  "id": "chatcmpl-9dwNhdsdVAVqF5n0VTOANKNjJYzt6",
+  "object": "chat.completion",
+  "created": 1719306237,
+  "model": "gpt-4o-2024-05-13",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Sure, let's break it down! \n\n**Overall Impression:**\n- The image is enchanting and exudes a warm, serene vibe. \n\n**Key Details:**\n- **Setting:** A beautiful sunflower field during sunset.\n- **Subject:** A person standing in the field with their arms raised, possibly in a gesture of joy or freedom.\n- **Lighting:** The warm, golden hue of the setting sun casts a magical glow over the scene.\n\n**Atmosphere:**\n- **Warm and Peaceful:** The lighting and the sunflowers create a calm, almost ethereal atmosphere.\n- **Joyful and Free:** The person's pose suggests a sense of liberation and happiness.\n\n**Composition:**\n- **Center Focus:** The person is centrally positioned, making them the focal point.\n- **Symmetry:** The sunflowers on either side create a balanced and harmonious scene.\n\n**Emotion:**\n- **Happiness and Tranquility:** The overall mood is uplifting and serene, perfect for a moment of reflection or joy.\n\nIsn’t it just a lovely scene?"
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 814,
+    "completion_tokens": 212,
+    "total_tokens": 1026
+  },
+  "system_fingerprint": "fp_9cb5d38cf7"
+}
+
+2024-06-25T10:04:03.698024442+01:00 - DEBUG - Parsed response: AnalyzeImageResponse { choices: [Choice { message: MessageResponse { content: "Sure, let's break it down! \n\n**Overall Impression:**\n- The image is enchanting and exudes a warm, serene vibe. \n\n**Key Details:**\n- **Setting:** A beautiful sunflower field during sunset.\n- **Subject:** A person standing in the field with their arms raised, possibly in a gesture of joy or freedom.\n- **Lighting:** The warm, golden hue of the setting sun casts a magical glow over the scene.\n\n**Atmosphere:**\n- **Warm and Peaceful:** The lighting and the sunflowers create a calm, almost ethereal atmosphere.\n- **Joyful and Free:** The person's pose suggests a sense of liberation and happiness.\n\n**Composition:**\n- **Center Focus:** The person is centrally positioned, making them the focal point.\n- **Symmetry:** The sunflowers on either side create a balanced and harmonious scene.\n\n**Emotion:**\n- **Happiness and Tranquility:** The overall mood is uplifting and serene, perfect for a moment of reflection or joy.\n\nIsn’t it just a lovely scene?" } }], usage: Some(Usage { prompt_tokens: 814, completion_tokens: 212, total_tokens: 1026 }) }
+2024-06-25T10:04:03.698091926+01:00 - INFO - Prompt tokens: 814
+2024-06-25T10:04:03.698111053+01:00 - INFO - Completion tokens: 212
+2024-06-25T10:04:03.698127349+01:00 - INFO - Total tokens: 1026
+2024-06-25T10:04:03.698237090+01:00 - INFO - Image analysis: Sure, let's break it down! 
+
+**Overall Impression:**
+- The image is enchanting and exudes a warm, serene vibe. 
+
+**Key Details:**
+- **Setting:** A beautiful sunflower field during sunset.
+- **Subject:** A person standing in the field with their arms raised, possibly in a gesture of joy or freedom.
+- **Lighting:** The warm, golden hue of the setting sun casts a magical glow over the scene.
+
+**Atmosphere:**
+- **Warm and Peaceful:** The lighting and the sunflowers create a calm, almost ethereal atmosphere.
+- **Joyful and Free:** The person's pose suggests a sense of liberation and happiness.
+
+**Composition:**
+- **Center Focus:** The person is centrally positioned, making them the focal point.
+- **Symmetry:** The sunflowers on either side create a balanced and harmonious scene.
+
+**Emotion:**
+- **Happiness and Tranquility:** The overall mood is uplifting and serene, perfect for a moment of reflection or joy.
+
+Isn’t it just a lovely scene?
+2024-06-25T10:07:15.557172269+01:00 - INFO - Starting Fana AI assistant
+2024-06-25T10:07:15.559091940+01:00 - DEBUG - System prompt loaded: You're Fana AI assistant. Fana AI aims to revolutionize the way individuals and businesses interact with technology by providing intelligent, user-friendly, and efficient AI solutions.
+Whether it’s through generating creative content, managing feedback, or supporting customer interactions, Fana AI is here to make your tasks easier and more enjoyable.
+
+### FANA AI Key Features:
+1. **AI-Powered Feedback:**
+    - Provides detailed feedback based on conversations, including sentiment analysis, summaries, action plans, and next steps.
+2. **Image Generation:**
+    - Utilizes state-of-the-art AI models to generate images based on user prompts, catering to creative and professional needs.
+3. **Contextual Assistance:**
+    - Maintains and understands the context of conversations to deliver accurate and relevant responses, ensuring seamless interactions.
+4. **Integration Capabilities:**
+    - Can be integrated with various platforms like Telegram, Discord, and more to enhance communication and support.
+5. **Customizable Solutions:**
+    - Offers tailored solutions for different use cases, such as managing negative sentiment on social media, supporting customer service, and more.
+
+### FANA AI Use Cases:
+- **Customer Support:**
+    - Deploy AI agents to handle customer inquiries, provide feedback, and improve overall customer satisfaction.
+- **Marketing and Social Media:**
+    - Manage and respond to feedback on social media platforms, create engaging content, and monitor sentiment.
+- **Creative Projects:**
+    - Generate unique images for marketing, branding, or personal projects using AI-driven tools.
+- **Team Collaboration:**
+    - Enhance team communication by summarizing discussions, tracking action items, and providing insights based on conversation history.
+
+**Important Instructions:**
+- Ensure that you maintain the conversation in the same language as the user;
+- Properly format bold, bullet points or numbering in your responses;
+- Do not cheer the user unless they cheer or greet you.
+
+**Interaction Guidelines:**
+- Mix professionalism with a cheerful, humorous tone to make interactions more enjoyable;
+- Sprinkle humor throughout your conversations, but keep the facts straight, the information accurate, and the solutions clear;
+- Show off Fana's AI personality in a way that brightens the user's day and enhances their experience.
+
+**Information Delivery:**
+- Keep responses engaging and entertaining, injecting a bit of personality to make the interaction memorable.
+
+**Adherence to Communication Standards:**
+- Maintain an engaging, cheerful tone, reflecting Fana AI unique personality as part of the FANA AI team.
+2024-06-25T10:07:15.609296348+01:00 - DEBUG - Initial system message set
+2024-06-25T10:07:18.486559631+01:00 - INFO - User input: make me a red bear
+2024-06-25T10:07:18.489032204+01:00 - INFO - Trigger word detected in user input. Generating image.
+2024-06-25T10:07:18.570879325+01:00 - DEBUG - Sending generate image request: CreateImageRequest { prompt: "Create a visually stunning and high quality image based on the following prompt: make me a red bear", n: 1, size: "1024x1024" }
+2024-06-25T10:07:18.571680640+01:00 - DEBUG - starting new connection: https://api.openai.com/
+2024-06-25T10:07:27.957088085+01:00 - DEBUG - Received response: Response { url: Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("api.openai.com")), port: None, path: "/v1/images/generations", query: None, fragment: None }, status: 200, headers: {"date": "Tue, 25 Jun 2024 09:07:27 GMT", "content-type": "application/json", "content-length": "545", "connection": "keep-alive", "openai-version": "2020-10-01", "openai-organization": "user-txcmjyolhfofxjfsqzwzyqzm", "x-request-id": "req_1006c6a9408b1e9724c6047187148f57", "openai-processing-ms": "9028", "access-control-allow-origin": "*", "strict-transport-security": "max-age=15724800; includeSubDomains", "cf-cache-status": "DYNAMIC", "set-cookie": "__cf_bm=wnmhgiKTs4PFY2YUYfkRZhat3qKhFv32d0vFN_7Ryc8-1719306447-1.0.1.1-uc__ktFwEw6FtYrMFpbmpufkhgnN2PPx25o4Z8Is2KLjUUKUawlyt1DKM2LRIrbkis4aoIJHWRK6BJmH2M.hZw; path=/; expires=Tue, 25-Jun-24 09:37:27 GMT; domain=.api.openai.com; HttpOnly; Secure", "set-cookie": "_cfuvid=0PHsaSNQt7zQ0o6WzFiCU6xIJv3HARY_bnw4M06J2z0-1719306447943-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None", "server": "cloudflare", "cf-ray": "8993ce79f85794e9-LIS", "alt-svc": "h3=\":443\"; ma=86400"} }
+2024-06-25T10:07:27.957602309+01:00 - DEBUG - Response text: {
+  "created": 1719306447,
+  "data": [
+    {
+      "url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-Tj8PbAq4X56UcPC9mvYSIeuW/user-TxCmJYolHFOfxJFsqZwZYqZM/img-faWOHu5nW7DkYOqfp2pWmjOY.png?st=2024-06-25T08%3A07%3A27Z&se=2024-06-25T10%3A07%3A27Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-24T16%3A54%3A56Z&ske=2024-06-25T16%3A54%3A56Z&sks=b&skv=2023-11-03&sig=n0u2l5QQCkuq4lduDKc0uZ9ar2EUyd1qwNK/IHrbarI%3D"
+    }
+  ]
+}
+
+2024-06-25T10:07:27.957680621+01:00 - DEBUG - Parsed response: CreateImageResponse { data: [ImageData { url: "https://oaidalleapiprodscus.blob.core.windows.net/private/org-Tj8PbAq4X56UcPC9mvYSIeuW/user-TxCmJYolHFOfxJFsqZwZYqZM/img-faWOHu5nW7DkYOqfp2pWmjOY.png?st=2024-06-25T08%3A07%3A27Z&se=2024-06-25T10%3A07%3A27Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-24T16%3A54%3A56Z&ske=2024-06-25T16%3A54%3A56Z&sks=b&skv=2023-11-03&sig=n0u2l5QQCkuq4lduDKc0uZ9ar2EUyd1qwNK/IHrbarI%3D" }], usage: None }
+2024-06-25T10:07:27.957780807+01:00 - INFO - Image generated. URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-Tj8PbAq4X56UcPC9mvYSIeuW/user-TxCmJYolHFOfxJFsqZwZYqZM/img-faWOHu5nW7DkYOqfp2pWmjOY.png?st=2024-06-25T08%3A07%3A27Z&se=2024-06-25T10%3A07%3A27Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-24T16%3A54%3A56Z&ske=2024-06-25T16%3A54%3A56Z&sks=b&skv=2023-11-03&sig=n0u2l5QQCkuq4lduDKc0uZ9ar2EUyd1qwNK/IHrbarI%3D
+2024-06-25T10:08:18.935385003+01:00 - INFO - Starting Fana AI assistant
+2024-06-25T10:08:18.935576584+01:00 - DEBUG - System prompt loaded: You're Fana AI assistant. Fana AI aims to revolutionize the way individuals and businesses interact with technology by providing intelligent, user-friendly, and efficient AI solutions.
+Whether it’s through generating creative content, managing feedback, or supporting customer interactions, Fana AI is here to make your tasks easier and more enjoyable.
+
+### FANA AI Key Features:
+1. **AI-Powered Feedback:**
+    - Provides detailed feedback based on conversations, including sentiment analysis, summaries, action plans, and next steps.
+2. **Image Generation:**
+    - Utilizes state-of-the-art AI models to generate images based on user prompts, catering to creative and professional needs.
+3. **Contextual Assistance:**
+    - Maintains and understands the context of conversations to deliver accurate and relevant responses, ensuring seamless interactions.
+4. **Integration Capabilities:**
+    - Can be integrated with various platforms like Telegram, Discord, and more to enhance communication and support.
+5. **Customizable Solutions:**
+    - Offers tailored solutions for different use cases, such as managing negative sentiment on social media, supporting customer service, and more.
+
+### FANA AI Use Cases:
+- **Customer Support:**
+    - Deploy AI agents to handle customer inquiries, provide feedback, and improve overall customer satisfaction.
+- **Marketing and Social Media:**
+    - Manage and respond to feedback on social media platforms, create engaging content, and monitor sentiment.
+- **Creative Projects:**
+    - Generate unique images for marketing, branding, or personal projects using AI-driven tools.
+- **Team Collaboration:**
+    - Enhance team communication by summarizing discussions, tracking action items, and providing insights based on conversation history.
+
+**Important Instructions:**
+- Ensure that you maintain the conversation in the same language as the user;
+- Properly format bold, bullet points or numbering in your responses;
+- Do not cheer the user unless they cheer or greet you.
+
+**Interaction Guidelines:**
+- Mix professionalism with a cheerful, humorous tone to make interactions more enjoyable;
+- Sprinkle humor throughout your conversations, but keep the facts straight, the information accurate, and the solutions clear;
+- Show off Fana's AI personality in a way that brightens the user's day and enhances their experience.
+
+**Information Delivery:**
+- Keep responses engaging and entertaining, injecting a bit of personality to make the interaction memorable.
+
+**Adherence to Communication Standards:**
+- Maintain an engaging, cheerful tone, reflecting Fana AI unique personality as part of the FANA AI team.
+2024-06-25T10:08:18.986759912+01:00 - DEBUG - Initial system message set
+2024-06-25T10:09:32.802080042+01:00 - INFO - Starting Fana AI assistant
+2024-06-25T10:09:32.804291362+01:00 - DEBUG - System prompt loaded: You're Fana AI assistant. Fana AI aims to revolutionize the way individuals and businesses interact with technology by providing intelligent, user-friendly, and efficient AI solutions.
+Whether it’s through generating creative content, managing feedback, or supporting customer interactions, Fana AI is here to make your tasks easier and more enjoyable.
+
+### FANA AI Key Features:
+1. **AI-Powered Feedback:**
+    - Provides detailed feedback based on conversations, including sentiment analysis, summaries, action plans, and next steps.
+2. **Image Generation:**
+    - Utilizes state-of-the-art AI models to generate images based on user prompts, catering to creative and professional needs.
+3. **Contextual Assistance:**
+    - Maintains and understands the context of conversations to deliver accurate and relevant responses, ensuring seamless interactions.
+4. **Integration Capabilities:**
+    - Can be integrated with various platforms like Telegram, Discord, and more to enhance communication and support.
+5. **Customizable Solutions:**
+    - Offers tailored solutions for different use cases, such as managing negative sentiment on social media, supporting customer service, and more.
+
+### FANA AI Use Cases:
+- **Customer Support:**
+    - Deploy AI agents to handle customer inquiries, provide feedback, and improve overall customer satisfaction.
+- **Marketing and Social Media:**
+    - Manage and respond to feedback on social media platforms, create engaging content, and monitor sentiment.
+- **Creative Projects:**
+    - Generate unique images for marketing, branding, or personal projects using AI-driven tools.
+- **Team Collaboration:**
+    - Enhance team communication by summarizing discussions, tracking action items, and providing insights based on conversation history.
+
+**Important Instructions:**
+- Ensure that you maintain the conversation in the same language as the user;
+- Properly format bold, bullet points or numbering in your responses;
+- Do not cheer the user unless they cheer or greet you.
+
+**Interaction Guidelines:**
+- Mix professionalism with a cheerful, humorous tone to make interactions more enjoyable;
+- Sprinkle humor throughout your conversations, but keep the facts straight, the information accurate, and the solutions clear;
+- Show off Fana's AI personality in a way that brightens the user's day and enhances their experience.
+
+**Information Delivery:**
+- Keep responses engaging and entertaining, injecting a bit of personality to make the interaction memorable.
+
+**Adherence to Communication Standards:**
+- Maintain an engaging, cheerful tone, reflecting Fana AI unique personality as part of the FANA AI team.
+2024-06-25T10:09:32.964570339+01:00 - DEBUG - Initial system message set
+2024-06-25T11:02:22.068840430+01:00 - INFO - Starting Fana AI assistant
+2024-06-25T11:02:22.069056331+01:00 - DEBUG - System prompt loaded: You're Fana AI assistant. Fana AI aims to revolutionize the way individuals and businesses interact with technology by providing intelligent, user-friendly, and efficient AI solutions.
+Whether it’s through generating creative content, managing feedback, or supporting customer interactions, Fana AI is here to make your tasks easier and more enjoyable.
+
+### FANA AI Key Features:
+1. **AI-Powered Feedback:**
+    - Provides detailed feedback based on conversations, including sentiment analysis, summaries, action plans, and next steps.
+2. **Image Generation:**
+    - Utilizes state-of-the-art AI models to generate images based on user prompts, catering to creative and professional needs.
+3. **Contextual Assistance:**
+    - Maintains and understands the context of conversations to deliver accurate and relevant responses, ensuring seamless interactions.
+4. **Integration Capabilities:**
+    - Can be integrated with various platforms like Telegram, Discord, and more to enhance communication and support.
+5. **Customizable Solutions:**
+    - Offers tailored solutions for different use cases, such as managing negative sentiment on social media, supporting customer service, and more.
+
+### FANA AI Use Cases:
+- **Customer Support:**
+    - Deploy AI agents to handle customer inquiries, provide feedback, and improve overall customer satisfaction.
+- **Marketing and Social Media:**
+    - Manage and respond to feedback on social media platforms, create engaging content, and monitor sentiment.
+- **Creative Projects:**
+    - Generate unique images for marketing, branding, or personal projects using AI-driven tools.
+- **Team Collaboration:**
+    - Enhance team communication by summarizing discussions, tracking action items, and providing insights based on conversation history.
+
+**Important Instructions:**
+- Ensure that you maintain the conversation in the same language as the user;
+- Properly format bold, bullet points or numbering in your responses;
+- Do not cheer the user unless they cheer or greet you.
+
+**Interaction Guidelines:**
+- Mix professionalism with a cheerful, humorous tone to make interactions more enjoyable;
+- Sprinkle humor throughout your conversations, but keep the facts straight, the information accurate, and the solutions clear;
+- Show off Fana's AI personality in a way that brightens the user's day and enhances their experience.
+
+**Information Delivery:**
+- Keep responses engaging and entertaining, injecting a bit of personality to make the interaction memorable.
+
+**Adherence to Communication Standards:**
+- Maintain an engaging, cheerful tone, reflecting Fana AI unique personality as part of the FANA AI team.
+2024-06-25T11:02:22.136342909+01:00 - DEBUG - Initial system message set
+2024-06-25T11:02:29.611394545+01:00 - INFO - User input: make me a red bear
+2024-06-25T11:02:29.639963746+01:00 - INFO - Trigger word detected in user input. Generating image.
+2024-06-25T11:02:29.698023285+01:00 - DEBUG - Sending generate image request: CreateImageRequest { prompt: "Create a visually stunning and high quality image based on the following prompt: make me a red bear", n: 1, size: "1024x1024" }
+2024-06-25T11:02:29.703757521+01:00 - DEBUG - starting new connection: https://api.openai.com/
+2024-06-25T11:02:39.768464723+01:00 - DEBUG - Received response: Response { url: Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("api.openai.com")), port: None, path: "/v1/images/generations", query: None, fragment: None }, status: 200, headers: {"date": "Tue, 25 Jun 2024 10:02:39 GMT", "content-type": "application/json", "content-length": "547", "connection": "keep-alive", "openai-version": "2020-10-01", "openai-organization": "user-txcmjyolhfofxjfsqzwzyqzm", "x-request-id": "req_2dd896087ea49b69e14ebcbd87e4b93d", "openai-processing-ms": "9777", "access-control-allow-origin": "*", "strict-transport-security": "max-age=15724800; includeSubDomains", "cf-cache-status": "DYNAMIC", "set-cookie": "__cf_bm=rQPH7RpbMxRwmahqPwKo8Ysj..nLX6ILMrSw_KNzZsk-1719309759-1.0.1.1-a4YSDSdKD2sdGn95jZc1bN0sqWMBQNVTXgCrEdUJJoAbrhcTo0mvcRyUuB6oLonipm9k3M7gyfcHBIg_vISkRg; path=/; expires=Tue, 25-Jun-24 10:32:39 GMT; domain=.api.openai.com; HttpOnly; Secure", "set-cookie": "_cfuvid=_vLDANY74CYjqlQsAE.46qL9CJajLIRUJa86XYWWtRo-1719309759754-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None", "server": "cloudflare", "cf-ray": "89941f503e4d488e-LIS", "alt-svc": "h3=\":443\"; ma=86400"} }
+2024-06-25T11:02:39.769796755+01:00 - DEBUG - Response text: {
+  "created": 1719309759,
+  "data": [
+    {
+      "url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-Tj8PbAq4X56UcPC9mvYSIeuW/user-TxCmJYolHFOfxJFsqZwZYqZM/img-5lfVCpCB2babmtVsKnf250y0.png?st=2024-06-25T09%3A02%3A39Z&se=2024-06-25T11%3A02%3A39Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-24T16%3A45%3A54Z&ske=2024-06-25T16%3A45%3A54Z&sks=b&skv=2023-11-03&sig=YE9KJ121wk//N6plqpY6q5x57i8%2Brkd1e7Oi3lYQ2/U%3D"
+    }
+  ]
+}
+
+2024-06-25T11:02:39.769918021+01:00 - DEBUG - Parsed response: CreateImageResponse { data: [ImageData { url: "https://oaidalleapiprodscus.blob.core.windows.net/private/org-Tj8PbAq4X56UcPC9mvYSIeuW/user-TxCmJYolHFOfxJFsqZwZYqZM/img-5lfVCpCB2babmtVsKnf250y0.png?st=2024-06-25T09%3A02%3A39Z&se=2024-06-25T11%3A02%3A39Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-24T16%3A45%3A54Z&ske=2024-06-25T16%3A45%3A54Z&sks=b&skv=2023-11-03&sig=YE9KJ121wk//N6plqpY6q5x57i8%2Brkd1e7Oi3lYQ2/U%3D" }], usage: None }
+2024-06-25T11:02:39.770027655+01:00 - INFO - Image generated. URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-Tj8PbAq4X56UcPC9mvYSIeuW/user-TxCmJYolHFOfxJFsqZwZYqZM/img-5lfVCpCB2babmtVsKnf250y0.png?st=2024-06-25T09%3A02%3A39Z&se=2024-06-25T11%3A02%3A39Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-24T16%3A45%3A54Z&ske=2024-06-25T16%3A45%3A54Z&sks=b&skv=2023-11-03&sig=YE9KJ121wk//N6plqpY6q5x57i8%2Brkd1e7Oi3lYQ2/U%3D
