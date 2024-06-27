@@ -56,16 +56,19 @@ async fn process_user_input(
 
         match generate_image(&user_input).await {
             Ok(image_url) => {
+                println!("\nFANA:\nI've generated an image based on your request.");
+                println!("You can view it here: {}", image_url);
                 info!("Image generated. URL: {}", image_url);
+            
+                // Add the image information to the conversation
                 messages.push(json!({
                     "role": "assistant",
                     "content": format!("{}", image_url)
                 }));
-                return Ok(image_url);
-            }
+            },
             Err(e) => {
+                println!("\nFANA:\nFailed to generate image: {}", e);
                 error!("Image generation failed: {}", e);
-                return Err(e.into());
             }
         }
     } else {

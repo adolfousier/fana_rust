@@ -8227,3 +8227,24 @@ Feel free to ask me anything or let me know how I can help you today! Remember, 
 2024-06-27T23:23:35.087239716+01:00 - INFO - shutting down idle worker
 2024-06-27T23:23:35.087659596+01:00 - INFO - shutting down idle worker
 2024-06-27T23:23:35.088380789+01:00 - INFO - shutting down idle worker
+2024-06-27T23:24:12.728617612+01:00 - INFO - Starting Fana AI assistant
+2024-06-27T23:24:12.728890436+01:00 - DEBUG - System prompt loaded successfully
+2024-06-27T23:24:12.781363528+01:00 - INFO - starting 4 workers
+2024-06-27T23:24:12.781475449+01:00 - INFO - Actix runtime found; starting in Actix runtime
+2024-06-27T23:24:12.782082433+01:00 - DEBUG - Initial system message set
+2024-06-27T23:24:46.236023824+01:00 - INFO - User input: generate an image of a bored ape
+2024-06-27T23:24:46.236152614+01:00 - INFO - Processing user input
+2024-06-27T23:24:46.238779788+01:00 - INFO - Trigger word detected in user input. Generating image.
+2024-06-27T23:24:46.284166611+01:00 - DEBUG - starting new connection: https://api.openai.com/
+2024-06-27T23:24:46.284520572+01:00 - DEBUG - resolving host="api.openai.com"
+2024-06-27T23:24:46.361029926+01:00 - DEBUG - connecting to 104.18.7.192:443
+2024-06-27T23:24:46.376984858+01:00 - DEBUG - connected to 104.18.7.192:443
+2024-06-27T23:24:56.660935914+01:00 - DEBUG - pooling idle connection for ("https", api.openai.com)
+2024-06-27T23:24:56.661302004+01:00 - INFO - Image generated. URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-Tj8PbAq4X56UcPC9mvYSIeuW/user-TxCmJYolHFOfxJFsqZwZYqZM/img-Z2hln7VjsJsddNyjxrHij6sa.png?st=2024-06-27T21%3A24%3A56Z&se=2024-06-27T23%3A24%3A56Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-27T01%3A30%3A22Z&ske=2024-06-28T01%3A30%3A22Z&sks=b&skv=2023-11-03&sig=wZzvAQHqkf1mTSdt/ws8EvK4QtnWoxUA09QyHorugwk%3D
+2024-06-27T23:26:08.012407361+01:00 - INFO - SIGINT received; starting forced shutdown
+2024-06-27T23:26:08.012620612+01:00 - INFO - shutting down idle worker
+2024-06-27T23:26:08.012861425+01:00 - DEBUG - paused accepting connections on 127.0.0.1:8080
+2024-06-27T23:26:08.013011518+01:00 - INFO - accept thread stopped
+2024-06-27T23:26:08.013239534+01:00 - INFO - shutting down idle worker
+2024-06-27T23:26:08.013417400+01:00 - INFO - shutting down idle worker
+2024-06-27T23:26:08.014034842+01:00 - INFO - shutting down idle worker
