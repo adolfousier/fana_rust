@@ -39,16 +39,18 @@ async fn process_user_input(
 
         match analyze_image(url).await {
             Ok(analysis) => {
-                info!("Image analysis completed: {}", analysis);
+                println!("\nFANA:\nImage analysis: {}", analysis);
+                info!("Image analysis: {}", analysis);
+                    
+                // Add the analysis result to the conversation
                 messages.push(json!({
                     "role": "assistant",
                     "content": analysis
                 }));
-                return Ok(analysis);
-            }
+            },
             Err(e) => {
+                println!("\nFANA:\n{}", e);
                 error!("Image analysis failed: {}", e);
-                return Err(e.into());
             }
         }
     } else if triggers_generate::contains_trigger_word(&user_input) {

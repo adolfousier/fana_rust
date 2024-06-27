@@ -8248,3 +8248,71 @@ Feel free to ask me anything or let me know how I can help you today! Remember, 
 2024-06-27T23:26:08.013239534+01:00 - INFO - shutting down idle worker
 2024-06-27T23:26:08.013417400+01:00 - INFO - shutting down idle worker
 2024-06-27T23:26:08.014034842+01:00 - INFO - shutting down idle worker
+2024-06-27T23:27:46.368733499+01:00 - INFO - Starting Fana AI assistant
+2024-06-27T23:27:46.368949571+01:00 - DEBUG - System prompt loaded successfully
+2024-06-27T23:27:46.418745635+01:00 - INFO - starting 4 workers
+2024-06-27T23:27:46.418863498+01:00 - INFO - Actix runtime found; starting in Actix runtime
+2024-06-27T23:27:46.419116418+01:00 - DEBUG - Initial system message set
+2024-06-27T23:27:55.432098971+01:00 - INFO - User input: https://img.freepik.com/premium-photo/happy-woman-standing-open-her-arms-sunflower-field-sunset_52701-1042.jpg
+2024-06-27T23:27:55.432260012+01:00 - INFO - Processing user input
+2024-06-27T23:27:55.436599906+01:00 - INFO - URL detected in user input: https://img.freepik.com/premium-photo/happy-woman-standing-open-her-arms-sunflower-field-sunset_52701-1042.jpg
+2024-06-27T23:27:55.500239517+01:00 - DEBUG - Sending analyze image request: AnalyzeImageRequest { model: "gpt-4o", messages: [Message { role: "user", content: [Text { type: "text", text: "Analyze the image in a conversational and friendly manner, explaining your analysis with short details, ensure responses concise. Ensure that your responses are properly formatted with bolds and bullet points when they make sense." }, ImageUrl { type: "image_url", image_url: ImageUrl { url: "https://img.freepik.com/premium-photo/happy-woman-standing-open-her-arms-sunflower-field-sunset_52701-1042.jpg" } }] }] }
+2024-06-27T23:27:55.500605508+01:00 - DEBUG - starting new connection: https://api.openai.com/
+2024-06-27T23:27:55.501029405+01:00 - DEBUG - resolving host="api.openai.com"
+2024-06-27T23:27:55.579853948+01:00 - DEBUG - connecting to 104.18.7.192:443
+2024-06-27T23:27:55.596645139+01:00 - DEBUG - connected to 104.18.7.192:443
+2024-06-27T23:28:01.699595806+01:00 - DEBUG - Received response: Response { url: Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("api.openai.com")), port: None, path: "/v1/chat/completions", query: None, fragment: None }, status: 200, headers: {"date": "Thu, 27 Jun 2024 22:28:01 GMT", "content-type": "application/json", "transfer-encoding": "chunked", "connection": "keep-alive", "openai-organization": "user-txcmjyolhfofxjfsqzwzyqzm", "openai-processing-ms": "5828", "openai-version": "2020-10-01", "strict-transport-security": "max-age=31536000; includeSubDomains", "x-ratelimit-limit-requests": "10000", "x-ratelimit-limit-tokens": "800000", "x-ratelimit-remaining-requests": "9999", "x-ratelimit-remaining-tokens": "799160", "x-ratelimit-reset-requests": "6ms", "x-ratelimit-reset-tokens": "63ms", "x-request-id": "req_c776228494ba510462c6044766ce441a", "cf-cache-status": "DYNAMIC", "set-cookie": "__cf_bm=3NCJOQ27qbwfW69LcOCmgX2ubxRiLRSmVbzo9KWi_R8-1719527281-1.0.1.1-jpEtBF.lEtTay6zR7rynIOpOoqQrMOb4_Z_8o1yaAx4V7_20nAYUzl30BNjRbFOp9lfKVWO13eQ2UFtNzDTcJg; path=/; expires=Thu, 27-Jun-24 22:58:01 GMT; domain=.api.openai.com; HttpOnly; Secure", "set-cookie": "_cfuvid=mbY7P9sy5nfFto.8yf4o2GDNuRARuyIhi6AVtK61R.U-1719527281678-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None", "server": "cloudflare", "cf-ray": "89a8de00af6103f2-LIS", "alt-svc": "h3=\":443\"; ma=86400"} }
+2024-06-27T23:28:01.700586469+01:00 - DEBUG - pooling idle connection for ("https", api.openai.com)
+2024-06-27T23:28:01.700875737+01:00 - DEBUG - Response text: {
+  "id": "chatcmpl-9ersslF4e2RsDrDmcDp6jyS8MbIBe",
+  "object": "chat.completion",
+  "created": 1719527278,
+  "model": "gpt-4o-2024-05-13",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Absolutely, let's dive into this beautiful image!\n\n**Setting:**\n- **Nature Scene:** The photo captures a vibrant and lush green field, likely with sunflowers.\n- **Clear Sky:** The sky is clear, giving a bright and fresh ambiance to the image.\n\n**Subject:**\n- **Person in Focus:** A person is standing in the midst of the field.\n- **Gestures:** They have their arms raised, which could symbolize joy, freedom, or a sense of openness.\n\n**Composition:**\n- **Depth of Field:** The use of shallow depth of field blurs the foreground and background, keeping focus on the person.\n- **Perspective:** The image is taken from behind the person, allowing viewers to share in the expansive view they are enjoying.\n\n**Mood and Vibes:**\n- **Positive and Uplifting:** The overall mood is uplifting and positive, evoking feelings of peace, freedom, and happiness. The vibrant greens and the person’s open arms contribute to this uplifting atmosphere.\n\nIsn't it just a refreshing snapshot of nature and human connection? 🌻✨"
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 471,
+    "completion_tokens": 218,
+    "total_tokens": 689
+  },
+  "system_fingerprint": "fp_4008e3b719"
+}
+
+2024-06-27T23:28:01.701047032+01:00 - DEBUG - Parsed response: AnalyzeImageResponse { choices: [Choice { message: MessageResponse { content: "Absolutely, let's dive into this beautiful image!\n\n**Setting:**\n- **Nature Scene:** The photo captures a vibrant and lush green field, likely with sunflowers.\n- **Clear Sky:** The sky is clear, giving a bright and fresh ambiance to the image.\n\n**Subject:**\n- **Person in Focus:** A person is standing in the midst of the field.\n- **Gestures:** They have their arms raised, which could symbolize joy, freedom, or a sense of openness.\n\n**Composition:**\n- **Depth of Field:** The use of shallow depth of field blurs the foreground and background, keeping focus on the person.\n- **Perspective:** The image is taken from behind the person, allowing viewers to share in the expansive view they are enjoying.\n\n**Mood and Vibes:**\n- **Positive and Uplifting:** The overall mood is uplifting and positive, evoking feelings of peace, freedom, and happiness. The vibrant greens and the person’s open arms contribute to this uplifting atmosphere.\n\nIsn't it just a refreshing snapshot of nature and human connection? 🌻✨" } }], usage: Some(Usage { prompt_tokens: 471, completion_tokens: 218, total_tokens: 689 }) }
+2024-06-27T23:28:01.701167185+01:00 - INFO - Prompt tokens: 471
+2024-06-27T23:28:01.701232002+01:00 - INFO - Completion tokens: 218
+2024-06-27T23:28:01.701266776+01:00 - INFO - Total tokens: 689
+2024-06-27T23:28:01.701409179+01:00 - INFO - Image analysis: Absolutely, let's dive into this beautiful image!
+
+**Setting:**
+- **Nature Scene:** The photo captures a vibrant and lush green field, likely with sunflowers.
+- **Clear Sky:** The sky is clear, giving a bright and fresh ambiance to the image.
+
+**Subject:**
+- **Person in Focus:** A person is standing in the midst of the field.
+- **Gestures:** They have their arms raised, which could symbolize joy, freedom, or a sense of openness.
+
+**Composition:**
+- **Depth of Field:** The use of shallow depth of field blurs the foreground and background, keeping focus on the person.
+- **Perspective:** The image is taken from behind the person, allowing viewers to share in the expansive view they are enjoying.
+
+**Mood and Vibes:**
+- **Positive and Uplifting:** The overall mood is uplifting and positive, evoking feelings of peace, freedom, and happiness. The vibrant greens and the person’s open arms contribute to this uplifting atmosphere.
+
+Isn't it just a refreshing snapshot of nature and human connection? 🌻✨
+2024-06-27T23:28:06.935867945+01:00 - INFO - SIGINT received; starting forced shutdown
+2024-06-27T23:28:06.936084939+01:00 - DEBUG - paused accepting connections on 127.0.0.1:8080
+2024-06-27T23:28:06.936505671+01:00 - INFO - shutting down idle worker
+2024-06-27T23:28:06.936722459+01:00 - INFO - shutting down idle worker
+2024-06-27T23:28:06.936910467+01:00 - INFO - shutting down idle worker
+2024-06-27T23:28:06.937409915+01:00 - INFO - accept thread stopped
+2024-06-27T23:28:06.937956066+01:00 - INFO - shutting down idle worker
