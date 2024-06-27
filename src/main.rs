@@ -33,7 +33,7 @@ async fn process_user_input(
     client: &Client,
     groq_api_key: &str,
 ) -> Result<String, Box<dyn std::error::Error>> {
-    info!("Processing user input");
+    info!("Processing user input: {}", user_input);
     if let Some(url) = contains_url(&user_input) {
         info!("URL detected in user input: {}", url);
 
@@ -67,10 +67,12 @@ async fn process_user_input(
                     "role": "assistant",
                     "content": format!("{}", image_url)
                 }));
+                return Ok(image_url);
             },
             Err(e) => {
                 println!("\nFANA:\nFailed to generate image: {}", e);
                 error!("Image generation failed: {}", e);
+                return Err(e.into());
             }
         }
     } else {
@@ -95,7 +97,7 @@ async fn process_user_input(
             "stop": null,
             "stream": false
         });
-        debug!("Prepared payload for API request");
+        debug!("Prepared payload for API request: {:?}", payload);
 
         let response = client
             .post("https://api.groq.com/openai/v1/chat/completions")
