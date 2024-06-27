@@ -10,7 +10,7 @@ use std::env;
 use log::{info, debug, error};
 use log4rs;
 use std::fs;
-
+use std::io::{self, Write};
 use reqwest::Client;
 use serde_json::{json, Value};
 use anyhow::{anyhow};
@@ -27,33 +27,28 @@ fn contains_url(text: &str) -> Option<&str> {
     url_regex.find(text).map(|m| m.as_str())
 }
 
-async fn handle_user_input(
+async fn process_user_input(
     user_input: String,
     messages: &mut Vec<Value>,
     client: &Client,
     groq_api_key: &str,
 ) -> Result<String, Box<dyn std::error::Error>> {
-    if user_input.eq_ignore_ascii_case("exit") {
-        info!("User requested exit");
-        return Ok("exit".to_string());
-    }
-
+    info!("Processing user input");
     if let Some(url) = contains_url(&user_input) {
-        info!("URL detected in user input. Analyzing image: {}", url);
+        info!("URL detected in user input: {}", url);
 
         match analyze_image(url).await {
             Ok(analysis) => {
-                println!("\nFANA:\nImage analysis: {}", analysis);
-                info!("Image analysis: {}", analysis);
-
+                info!("Image analysis completed: {}", analysis);
                 messages.push(json!({
                     "role": "assistant",
                     "content": analysis
                 }));
+                return Ok(analysis);
             }
             Err(e) => {
-                println!("\nFANA:\n{}", e);
                 error!("Image analysis failed: {}", e);
+                return Err(e.into());
             }
         }
     } else if triggers_generate::contains_trigger_word(&user_input) {
@@ -61,21 +56,20 @@ async fn handle_user_input(
 
         match generate_image(&user_input).await {
             Ok(image_url) => {
-                println!("\nFANA:\nI've generated an image based on your request.");
-                println!("You can view it here: {}", image_url);
                 info!("Image generated. URL: {}", image_url);
-
                 messages.push(json!({
                     "role": "assistant",
                     "content": format!("{}", image_url)
                 }));
+                return Ok(image_url);
             }
             Err(e) => {
-                println!("\nFANA:\nFailed to generate image: {}", e);
                 error!("Image generation failed: {}", e);
+                return Err(e.into());
             }
         }
     } else {
+        info!("No URL or trigger word detected. Processing text input.");
         messages.push(json!({
             "role": "user",
             "content": user_input
@@ -110,20 +104,20 @@ async fn handle_user_input(
         let body = response.text().await?;
         let json: Value = serde_json::from_str(&body)?;
         debug!("Received and parsed response from Groq API");
-
         if let Some(choices) = json["choices"].as_array() {
             if let Some(choice) = choices.get(0) {
                 if let Some(message) = choice.get("message") {
                     if let Some(content) = message.get("content") {
                         let content = content.as_str().unwrap_or("");
                         println!("\nFANA:\n{}", content);
-                        info!("Fana response: {}", content);
+                        info!("FANA response: {}", content);
                         messages.push(json!({
                             "role": "assistant",
                             "content": content
                         }));
                         debug!("Added assistant message to context");
 
+                        // Log token usage
                         if let Some(usage) = json["usage"].as_object() {
                             let prompt_tokens = usage.get("prompt_tokens").and_then(Value::as_u64).unwrap_or(0);
                             let completion_tokens = usage.get("completion_tokens").and_then(Value::as_u64).unwrap_or(0);
@@ -134,11 +128,41 @@ async fn handle_user_input(
                 }
             }
         } else {
-            error!("Failed to parse Groq API response");
+        error!("Failed to parse Groq API response");
         }
     }
 
     Ok("".to_string())
+}
+
+async fn run_interactive_mode(client: Client, groq_api_key: String, system_prompt: String) -> Result<(), Box<dyn std::error::Error>> {
+    let mut messages = vec![
+        json!({
+            "role": "system",
+            "content": system_prompt
+        })
+    ];
+    debug!("Initial system message set");
+
+    loop {
+        print!("\nYou:\n");
+        io::stdout().flush()?;
+        let mut user_input = String::new();
+        io::stdin().read_line(&mut user_input)?;
+        let user_input = user_input.trim().to_string();
+        info!("User input: {}", user_input);
+
+        if user_input.eq_ignore_ascii_case("exit") {
+            info!("User requested exit");
+            break;
+        }
+
+        if let Err(e) = process_user_input(user_input.clone(), &mut messages, &client, &groq_api_key).await {
+            error!("Error processing user input: {}", e);
+        }
+    }
+
+    Ok(())
 }
 
 #[actix_web::main]
@@ -153,7 +177,7 @@ async fn main() -> std::io::Result<()> {
     info!("Starting Fana AI assistant");
 
     let groq_api_key = env::var("GROQ_API_KEY").expect("GROQ_API_KEY not set");
-    let system_prompt = system_prompt::SYSTEM_PROMPT;
+    let system_prompt = system_prompt::SYSTEM_PROMPT.to_string();
 
     if system_prompt.is_empty() {
         error!("SYSTEM_PROMPT is empty!");
@@ -162,6 +186,21 @@ async fn main() -> std::io::Result<()> {
     debug!("System prompt loaded successfully");
 
     let client = Client::new();
+
+    // Clone the variables to move them into the thread
+    let client_clone = client.clone();
+    let groq_api_key_clone = groq_api_key.clone();
+    let system_prompt_clone = system_prompt.clone();
+
+    // Spawn a new thread for the interactive console mode
+    std::thread::spawn(move || {
+        let rt = tokio::runtime::Runtime::new().unwrap();
+        rt.block_on(async {
+            if let Err(e) = run_interactive_mode(client_clone, groq_api_key_clone, system_prompt_clone).await {
+                error!("Error in interactive mode: {}", e);
+            }
+        });
+    });
 
     HttpServer::new(move || {
         App::new()
