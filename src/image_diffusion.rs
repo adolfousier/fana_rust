@@ -3,6 +3,7 @@ use reqwest::Client;
 use serde::{Deserialize, Serialize};
 use std::env;
 
+
 #[derive(Serialize)]
 struct CreateImageRequest {
     prompt: String,

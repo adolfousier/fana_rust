@@ -70,7 +70,7 @@ pub async fn analyze_image(image_url: &str) -> Result<String, Box<dyn std::error
             content: vec![
                 Content::Text {
                     r#type: "text".to_string(),
-                    text: "Analyze the image in a conversational and friendly manner, explaining your analysis with short details but keep your responses short and concise. Ensure that your responses are properly formatted with bolds and bullet points when they make sense.".to_string(),
+                    text: "Analyze the image in a conversational and friendly manner, explaining your analysis with short details, ensure responses concise. Ensure that your responses are properly formatted with bolds and bullet points when they make sense.".to_string(),
                 },
                 Content::ImageUrl {
                     r#type: "image_url".to_string(),
