@@ -8,7 +8,7 @@ edition = "2021"
 [dependencies]
 # actix = "0.13.5"
 actix-web = "4.8.0"
-actix-multipart = "0.6.2"
+# actix-multipart = "0.6.2"
 # actix-session = { version = "0.9", features = ["cookie-session"] }
 # actix-web-actors = "4.2"
 # async-trait = "0.1.80"

@@ -1,7 +1,13 @@
-// api_routes.rs
-// api_routes.rs
 use actix_web::{web, HttpResponse, Responder};
 use serde::Deserialize;
+use serde_json::json;
+use reqwest::Client;
+use log::{error, info, debug};
+
+#[derive(Deserialize)]
+struct InteractRequest {
+    text: String,
+}
 
 #[derive(Deserialize)]
 struct GenerateImageRequest {
@@ -27,10 +33,44 @@ async fn analyze_image_route(req: web::Json<AnalyzeImageRequest>) -> impl Respon
     }
 }
 
+async fn interact_route(
+    req: web::Json<InteractRequest>,
+    client: web::Data<Client>,
+    groq_api_key: web::Data<String>,
+    system_prompt: web::Data<String>,
+) -> impl Responder {
+    let mut messages = vec![
+        json!({
+            "role": "system",
+            "content": system_prompt.as_str()
+        })
+    ];
+
+    debug!("Received text: {}", req.text);
+
+    match crate::input_process::process_user_input(
+        req.text.clone(),
+        &mut messages,
+        &client,
+        groq_api_key.as_str(),
+    ).await {
+        Ok(response) => {
+            info!("Fana response: {}", response);
+            HttpResponse::Ok().json(response)
+        },
+        Err(e) => {
+            error!("Error processing user input: {}", e);
+            HttpResponse::InternalServerError().body(e.to_string())
+        }
+    }
+}
+
 pub fn configure(cfg: &mut web::ServiceConfig) {
     cfg.service(
-        web::scope("/api/prediction")
+        web::scope("/api")
+            .route("/interact", web::post().to(interact_route))
             .route("/generate", web::post().to(generate_image_route))
-            .route("/analyze", web::post().to(analyze_image_route)),
+            .route("/analyze", web::post().to(analyze_image_route))
     );
 }
+
