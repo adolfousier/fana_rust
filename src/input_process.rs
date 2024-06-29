@@ -9,9 +9,9 @@ use crate::dotenv;
 use serde_json::json;
 
 
-const MAX_CONTEXT_MESSAGES: usize = 10;
+pub const MAX_CONTEXT_MESSAGES: usize = 10;
 
-fn contains_url(text: &str) -> Option<&str> {
+pub fn contains_url(text: &str) -> Option<&str> {
     let url_regex = Regex::new(r"https?://[^\s]+").unwrap();
     url_regex.find(text).map(|m| m.as_str())
 }

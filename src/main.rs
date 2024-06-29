@@ -56,7 +56,7 @@ async fn main() -> std::io::Result<()> {
     // Create logs directory if it doesn't exist
     fs::create_dir_all("logs")?;
     // Configure log4rs
-    log4rs::init_file("log4rs.yaml", Default::default()).map_err(|e| std::io::Error::new(std::io::ErrorKind::Other, anyhow!(e)))?;
+    log4rs::init_file("log4rs.yaml", Default::default()).map_err(|e| std::io::Error::new(std::io::ErrorKind::Other, anyhow::anyhow!(e)))?;
 
     info!("Starting Fana AI assistant");
 
@@ -89,8 +89,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(move || {
         App::new()
             .wrap(middleware::Logger::default())
-            .wrap(api_auth::ApiKey)
-            .configure(api_routes::configure)
+            .configure(|cfg| api_routes::configure(cfg))
             .app_data(web::Data::new(client.clone()))
             .app_data(web::Data::new(groq_api_key.clone()))
             .app_data(web::Data::new(system_prompt.clone()))
@@ -99,4 +98,5 @@ async fn main() -> std::io::Result<()> {
     .run()
     .await
 }
+
 
