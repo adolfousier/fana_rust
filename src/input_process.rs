@@ -89,43 +89,56 @@ pub async fn process_user_input(
         });
         debug!("Prepared payload for API request: {:?}", payload);
 
+        // Log the request details to ensure they are correct
+        debug!("Sending request to Groq API with key: {}", groq_api_key);
+
         let response = client
             .post("https://api.groq.com/openai/v1/chat/completions")
             .header("Content-Type", "application/json")
-            .header("Authorization", format!("Bearer {}", groq_api_key))
+            .header("Authorization", format!("Bearer {}", &groq_api_key.trim()))
             .json(&payload)
             .send()
-            .await?;
-        debug!("Sent request to Groq API");
+            .await;
 
-        let body = response.text().await?;
-        let json: Value = serde_json::from_str(&body)?;
-        debug!("Received and parsed response from Groq API");
-        if let Some(choices) = json["choices"].as_array() {
-            if let Some(choice) = choices.get(0) {
-                if let Some(message) = choice.get("message") {
-                    if let Some(content) = message.get("content") {
-                        let content = content.as_str().unwrap_or("");
-                        println!("\nFANA:\n{}", content);
-                        info!("FANA response: {}", content);
-                        messages.push(json!({
-                            "role": "assistant",
-                            "content": content
-                        }));
-                        debug!("Added assistant message to context");
+        match response {
+            Ok(resp) => {
+                debug!("Received response from Groq API");
+                let body = resp.text().await?;
+                debug!("Groq API response body: {}", body);
+                let json: Value = serde_json::from_str(&body)?;
+                debug!("Received and parsed response from Groq API");
 
-                        // Log token usage
-                        if let Some(usage) = json["usage"].as_object() {
-                            let prompt_tokens = usage.get("prompt_tokens").and_then(Value::as_u64).unwrap_or(0);
-                            let completion_tokens = usage.get("completion_tokens").and_then(Value::as_u64).unwrap_or(0);
-                            let total_tokens = usage.get("total_tokens").and_then(Value::as_u64).unwrap_or(0);
-                            info!("Token usage - Prompt tokens: {}, Completion tokens: {}, Total tokens: {}", prompt_tokens, completion_tokens, total_tokens);
+                if let Some(choices) = json["choices"].as_array() {
+                    if let Some(choice) = choices.get(0) {
+                        if let Some(message) = choice.get("message") {
+                            if let Some(content) = message.get("content") {
+                                let content = content.as_str().unwrap_or("");
+                                println!("\nFANA:\n{}", content);
+                                info!("FANA response: {}", content);
+                                messages.push(json!({
+                                    "role": "assistant",
+                                    "content": content
+                                }));
+                                debug!("Added assistant message to context");
+
+                                // Log token usage
+                                if let Some(usage) = json["usage"].as_object() {
+                                    let prompt_tokens = usage.get("prompt_tokens").and_then(Value::as_u64).unwrap_or(0);
+                                    let completion_tokens = usage.get("completion_tokens").and_then(Value::as_u64).unwrap_or(0);
+                                    let total_tokens = usage.get("total_tokens").and_then(Value::as_u64).unwrap_or(0);
+                                    info!("Token usage - Prompt tokens: {}, Completion tokens: {}, Total tokens: {}", prompt_tokens, completion_tokens, total_tokens);
+                                }
+                                return Ok(content.to_string());
+                            }
                         }
                     }
                 }
+                error!("Failed to parse Groq API response");
             }
-        } else {
-        error!("Failed to parse Groq API response");
+            Err(e) => {
+                error!("Error sending request to Groq API: {:?}", e);
+                return Err(e.into());
+            }
         }
     }
 

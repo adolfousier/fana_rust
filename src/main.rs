@@ -7,14 +7,13 @@ mod api_auth;
 mod api_routes;
 mod input_process; // Add this line
 
+use actix_web::{App, HttpServer, middleware, web};
 use std::env;
 use log::{info, debug, error};
 use log4rs;
 use std::fs;
 use std::io::{self, Write};
 use reqwest::Client;
-use anyhow::{anyhow};
-use actix_web::{App, HttpServer, middleware, web};
 use dotenv::dotenv;
 use serde_json::json;
 
@@ -61,6 +60,8 @@ async fn main() -> std::io::Result<()> {
     info!("Starting Fana AI assistant");
 
     let groq_api_key = env::var("GROQ_API_KEY").expect("GROQ_API_KEY not set");
+    debug!("Loaded GROQ API Key: {}", groq_api_key);
+
     let system_prompt = system_prompt::SYSTEM_PROMPT.to_string();
 
     if system_prompt.is_empty() {
@@ -87,16 +88,17 @@ async fn main() -> std::io::Result<()> {
     });
 
     HttpServer::new(move || {
+        let groq_api_key_clone = groq_api_key.clone();
         App::new()
             .wrap(middleware::Logger::default())
-            .configure(|cfg| api_routes::configure(cfg))
+            .wrap(api_auth::ApiKey)
+            .configure(move |cfg| {
+                let groq_api_key = groq_api_key_clone.clone();  // clone within the closure
+                api_routes::configure(cfg, groq_api_key)
+            })
             .app_data(web::Data::new(client.clone()))
-            .app_data(web::Data::new(groq_api_key.clone()))
-            .app_data(web::Data::new(system_prompt.clone()))
     })
     .bind("127.0.0.1:8080")?
     .run()
     .await
 }
-
-
