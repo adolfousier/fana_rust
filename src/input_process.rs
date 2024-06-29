@@ -24,6 +24,7 @@ pub async fn process_user_input(
 ) -> Result<String, Box<dyn std::error::Error>> {
     dotenv().ok();
     info!("Processing user input: {}", user_input);
+    debug!("Using Groq API Key: {}", groq_api_key);
     if let Some(url) = contains_url(&user_input) {
         info!("URL detected in user input: {}", url);
 
@@ -91,6 +92,7 @@ pub async fn process_user_input(
 
         // Log the request details to ensure they are correct
         debug!("Sending request to Groq API with key: {}", groq_api_key);
+
 
         let response = client
             .post("https://api.groq.com/openai/v1/chat/completions")

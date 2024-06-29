@@ -1,14 +1,13 @@
-// generate.rs
 use reqwest::Client;
 use serde::{Deserialize, Serialize};
 use std::env;
-
 
 #[derive(Serialize)]
 struct CreateImageRequest {
     prompt: String,
     n: usize,
     size: String,
+    model: String, // Add model field to specify DALL-E 3
 }
 
 #[derive(Deserialize)]
@@ -35,6 +34,7 @@ pub async fn generate_image(user_input: &str) -> Result<String, Box<dyn std::err
         prompt,
         n: 1,
         size: "1024x1024".to_string(),
+        model: "dall-e-3".to_string(), // Specify DALL-E 3 model
     };
 
     let response = client.post("https://api.openai.com/v1/images/generations")

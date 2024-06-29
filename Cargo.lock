@@ -640,7 +640,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "fanallm"
+name = "fanallmrust"
 version = "0.3.3"
 dependencies = [
  "actix-web",
