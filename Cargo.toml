@@ -42,5 +42,5 @@ serde_json = "1.0.117"
 tiktoken-rs = "0.5.9"
 tokio = { version = "1.38.0", features = ["full"] }
 # tokio-retry = "0.3.0"
-# uuid = { version = "1.8.0", features = ["v4"] }
+uuid = { version = "1.9.1", features = ["v4"] }
 # whatlang = "0.16.4"

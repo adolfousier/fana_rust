@@ -24,7 +24,6 @@ pub async fn process_user_input(
 ) -> Result<String, Box<dyn std::error::Error>> {
     dotenv().ok();
     info!("Processing user input: {}", user_input);
-    debug!("Using Groq API Key: {}", groq_api_key);
     if let Some(url) = contains_url(&user_input) {
         info!("URL detected in user input: {}", url);
 

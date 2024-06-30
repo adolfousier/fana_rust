@@ -1,16 +1,15 @@
 // api_routes.rs
+use crate::system_prompt::SYSTEM_PROMPT;
+use crate::session_manager::SessionManager;
+use crate::input_process::process_user_input;
 
 use actix_web::{web, HttpResponse, Responder};
 use actix_web::http::header::ContentType;
 use serde::Deserialize;
 use reqwest::Client;
 use log::{error, debug};
-use serde_json::Value;
-use std::sync::Mutex;
+use std::sync::{Arc, Mutex};
 use serde_json::json;
-use crate::system_prompt::SYSTEM_PROMPT;
-
-use crate::input_process::process_user_input;
 
 #[derive(Deserialize)]
 struct InteractRequest {
@@ -21,10 +20,9 @@ struct InteractRequest {
 pub fn configure(cfg: &mut web::ServiceConfig, groq_api_key: String) {
     cfg.service(
         web::scope("/api")
-         .app_data(web::Data::new(Client::new()))
-         .app_data(web::Data::new(Mutex::new(Vec::<Value>::new())))
-         .app_data(web::Data::new(groq_api_key.clone())) // Use groq_api_key.clone()
-         .route("/interact", web::post().to(interact_route))
+   .app_data(web::Data::new(Client::new()))
+   .app_data(web::Data::new(groq_api_key.clone())) // Use groq_api_key.clone()
+   .route("/interact", web::post().to(interact_route))
 
     );
 }
@@ -32,17 +30,20 @@ pub fn configure(cfg: &mut web::ServiceConfig, groq_api_key: String) {
 // Set API Endpoint
 async fn interact_route(
     interact_req: web::Json<InteractRequest>,
-    messages_data: web::Data<Mutex<Vec<Value>>>, 
     client: web::Data<Client>,
     groq_api_key: web::Data<String>, 
+    session_manager: web::Data<Arc<Mutex<SessionManager>>>,
 ) -> impl Responder {
-    let mut messages = messages_data.lock().unwrap();
+    let session_manager = session_manager.into_inner();
+    let mut session_manager = session_manager.lock().unwrap();
+    let session_id = session_manager.create_session();
+    let mut session = session_manager.get_session(&session_id).unwrap().clone();
+
     let groq_api_key = groq_api_key.get_ref().trim();
-    debug!("Using Groq API Key: {}", groq_api_key);
 
     // Add system prompt if messages are empty (first call)
-    if messages.is_empty() {
-        messages.push(json!({
+    if session.is_empty() {
+        session.push(json!({
             "role": "system",
             "content": SYSTEM_PROMPT
         }));
@@ -51,15 +52,15 @@ async fn interact_route(
 
     match process_user_input(
         interact_req.question.clone(),
-        &mut messages,
+        &mut session,
         &client,
         groq_api_key
     ).await {
         Ok(response) => {
             // Return the response as plain text
             HttpResponse::Ok()
-             .content_type(ContentType::plaintext())
-             .body(response)
+        .content_type(ContentType::plaintext())
+        .body(response)
         }
         Err(e) => {
             error!("Failed to process user input: {}", e);

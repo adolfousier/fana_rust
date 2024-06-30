@@ -1,11 +1,13 @@
-// main.rs 
 mod system_prompt;
 mod triggers_generate;
 mod image_diffusion;
 mod image_vision;
 mod api_auth;
 mod api_routes;
-mod input_process; // Add this line
+mod input_process;
+mod session_manager;
+use crate::session_manager::SessionManager;
+
 
 use actix_web::{App, HttpServer, middleware, web};
 use std::env;
@@ -18,7 +20,6 @@ use dotenv::dotenv;
 use serde_json::json;
 use std::sync::{Arc, Mutex};
 use serde_json::Value;
-
 
 async fn run_interactive_mode(client: Client, groq_api_key: String, system_prompt: String, shared_messages: Arc<Mutex<Vec<Value>>>) -> Result<(), Box<dyn std::error::Error>> {
     let mut messages = shared_messages.lock().unwrap();
@@ -92,17 +93,19 @@ async fn main() -> std::io::Result<()> {
     });
 
     HttpServer::new(move || {
-        let groq_api_key_clone = groq_api_key.clone();
-        App::new() 
-            .wrap(middleware::Logger::default())
-            .wrap(api_auth::ApiKey)
-            .configure(move |cfg| {
+    let groq_api_key_clone = groq_api_key.clone();
+    let session_manager = Arc::new(Mutex::new(SessionManager::new()));
+    App::new() 
+        .wrap(middleware::Logger::default())
+        .wrap(api_auth::ApiKey)
+        .app_data(web::Data::new(session_manager.clone())) // Store session_manager as app data
+        .configure(move |cfg| {
                 api_routes::configure(cfg, groq_api_key_clone.clone())
             })
-            .app_data(web::Data::new(client.clone()))
-            .app_data(web::Data::from(shared_messages.clone()))
+        .app_data(web::Data::new(client.clone()))
+        .app_data(web::Data::from(shared_messages.clone()))
     })
-    .bind("127.0.0.1:8080")?
-    .run()
-    .await
+   .bind("127.0.0.1:8080")?
+   .run()
+   .await
 }
