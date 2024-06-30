@@ -17,13 +17,12 @@ struct InteractRequest {
 }
 
 // Set API Routes
-pub fn configure(cfg: &mut web::ServiceConfig, groq_api_key: String) {
+pub fn configure(cfg: &mut web::ServiceConfig, groq_api_key: web::Data<String>) {
     cfg.service(
         web::scope("/api")
-   .app_data(web::Data::new(Client::new()))
-   .app_data(web::Data::new(groq_api_key.clone())) // Use groq_api_key.clone()
-   .route("/interact", web::post().to(interact_route))
-
+           .app_data(web::Data::new(Client::new()))
+           .app_data(web::Data::new(groq_api_key.clone()))
+           .route("/interact", web::post().to(interact_route))
     );
 }
 
@@ -52,7 +51,7 @@ async fn interact_route(
 
     match process_user_input(
         interact_req.question.clone(),
-        &mut session,
+        &mut session_manager,
         &client,
         groq_api_key
     ).await {

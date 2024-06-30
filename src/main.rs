@@ -1,11 +1,15 @@
-mod system_prompt;
-mod triggers_generate;
-mod image_diffusion;
-mod image_vision;
 mod api_auth;
 mod api_routes;
+mod context_manager;
+
+mod image_diffusion;
+mod image_vision;
 mod input_process;
 mod session_manager;
+mod system_prompt;
+mod trigger_handler;
+mod triggers_generate;
+mod url_handler;
 use crate::session_manager::SessionManager;
 
 
@@ -19,10 +23,15 @@ use reqwest::Client;
 use dotenv::dotenv;
 use serde_json::json;
 use std::sync::{Arc, Mutex};
-use serde_json::Value;
 
-async fn run_interactive_mode(client: Client, groq_api_key: String, system_prompt: String, shared_messages: Arc<Mutex<Vec<Value>>>) -> Result<(), Box<dyn std::error::Error>> {
-    let mut messages = shared_messages.lock().unwrap();
+async fn run_interactive_mode(
+    client: Client,
+    groq_api_key: String,
+    system_prompt: String,
+    mut session_manager: crate::session_manager::SessionManager,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let _ = session_manager.create_session();
+    let mut messages = Vec::new();
     messages.push(json!({
         "role": "system",
         "content": system_prompt
@@ -41,7 +50,7 @@ async fn run_interactive_mode(client: Client, groq_api_key: String, system_promp
             break;
         }
 
-        if let Err(e) = input_process::process_user_input(user_input.clone(), &mut messages, &client, &groq_api_key).await {
+        if let Err(e) = input_process::process_user_input(user_input.clone(), &mut session_manager, &client, &groq_api_key).await {
             error!("Error processing user input: {}", e);
         }
     }
@@ -78,34 +87,33 @@ async fn main() -> std::io::Result<()> {
     let groq_api_key_clone = groq_api_key.clone();
     let system_prompt_clone = system_prompt.clone();
 
-    // Initialize the shared message state
-    let shared_messages = Arc::new(Mutex::new(Vec::<Value>::new()));
+    // Initialize the session manager
+    let session_manager = crate::session_manager::SessionManager::new();
 
     // Spawn a new thread for the interactive console mode
-    let shared_messages_clone = Arc::clone(&shared_messages);
     std::thread::spawn(move || {
         let rt = tokio::runtime::Runtime::new().unwrap();
         rt.block_on(async {
-            if let Err(e) = run_interactive_mode(client_clone, groq_api_key_clone, system_prompt_clone, shared_messages_clone).await {
+            if let Err(e) = run_interactive_mode(client_clone, groq_api_key_clone, system_prompt_clone, session_manager).await {
                 error!("Error in interactive mode: {}", e);
             }
         });
     });
 
     HttpServer::new(move || {
-    let groq_api_key_clone = groq_api_key.clone();
-    let session_manager = Arc::new(Mutex::new(SessionManager::new()));
-    App::new() 
+        let groq_api_key_clone = web::Data::new(groq_api_key.clone());
+        let session_manager_clone = web::Data::new(Arc::new(Mutex::new(SessionManager::new())));
+        App::new()
         .wrap(middleware::Logger::default())
         .wrap(api_auth::ApiKey)
-        .app_data(web::Data::new(session_manager.clone())) // Store session_manager as app data
+        .app_data(groq_api_key_clone.clone())
+        .app_data(session_manager_clone.clone())
         .configure(move |cfg| {
                 api_routes::configure(cfg, groq_api_key_clone.clone())
             })
         .app_data(web::Data::new(client.clone()))
-        .app_data(web::Data::from(shared_messages.clone()))
     })
-   .bind("127.0.0.1:8080")?
-   .run()
-   .await
+.bind("127.0.0.1:8080")?
+.run()
+.await
 }
