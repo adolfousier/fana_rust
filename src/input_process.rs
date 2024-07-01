@@ -1,5 +1,4 @@
 // input_process.rs
-
 use crate::triggers_generate;
 use crate::dotenv;
 use crate::session_manager::SessionManager;
@@ -84,15 +83,13 @@ async fn process_text_input(
 
     let mut context_messages = context_manager.get_context(session_id).await;
 
-    // Add the system prompt at the beginning of the context messages if it's not already there
-    if context_messages.is_empty() || context_messages[0]["role"] != "system" {
-        let system_message = json!({
-            "role": "system",
-            "content": SYSTEM_PROMPT
-        });
-        context_messages.insert(0, system_message);
-        info!("System prompt added to the API request payload.");
-    }
+    // Always add the system prompt at the beginning of the context messages
+    let system_message = json!({
+        "role": "system",
+        "content": SYSTEM_PROMPT
+    });
+    context_messages.insert(0, system_message);
+    info!("System prompt added to the API request payload.");
 
     context_messages.push(user_message);
 
@@ -159,6 +156,8 @@ async fn process_text_input(
         }
     }
 }
+
+
 
 
 
