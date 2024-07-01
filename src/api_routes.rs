@@ -10,6 +10,7 @@ use reqwest::Client;
 use log::{error, debug, info};
 use std::sync::{Arc, Mutex};
 use serde_json::json;
+use std::net::IpAddr;
 
 #[derive(Deserialize)]
 struct InteractRequest {
@@ -35,13 +36,15 @@ async fn interact_route(
 ) -> impl Responder {
     let session_manager_arc = session_manager.clone();
     let mut session_manager_lock = session_manager_arc.lock().unwrap();
-    let session_id = session_manager_lock.create_session();
+    let ip_addr = IpAddr::V4("95.94.61.253".parse().unwrap());
+    let session_id = session_manager_lock.create_session(ip_addr);
     info!("Added assistant message to context for session {}", session_id);
     let mut session = session_manager_lock.get_session(&session_id).unwrap().clone();
 
     let groq_api_key = groq_api_key.get_ref().trim();
 
-    // Add system prompt if messages are empty (first call)
+    // Add system prompt if m
+    // Messages are empty (first call)
     if session.is_empty() {
         session.push(json!({
             "role": "system",
@@ -54,7 +57,8 @@ async fn interact_route(
         interact_req.question.clone(),
         &mut session_manager_lock,
         &client,
-        groq_api_key
+        groq_api_key,
+        ip_addr 
     ).await {
         Ok(response) => {
             // Return the response as plain text

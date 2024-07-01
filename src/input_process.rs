@@ -12,18 +12,19 @@ use reqwest::Client;
 use log::{info, debug, error};
 use serde_json::json;
 use uuid::Uuid;
+use std::net::IpAddr;
 
 pub async fn process_user_input(
     user_input: String,
     session_manager: &mut SessionManager,
     client: &Client,
     groq_api_key: &str,
+    ip_addr: IpAddr,
 ) -> Result<String, Box<dyn std::error::Error>> {
     dotenv().ok();
     info!("Processing user input: {}", user_input);
-    debug!("Using Groq API Key: {}", groq_api_key);
 
-    let session_id = session_manager.create_session();
+    let session_id = session_manager.create_session(ip_addr);
     info!("Session ID: {}", session_id);
 
     let mut context_manager = ContextManager::new();
@@ -41,13 +42,13 @@ pub async fn process_user_input(
         "role": "user",
         "content": user_input.clone()
     });
-    context_manager.add_message(&session_id, user_message).await;
-
+    let ip_addr = IpAddr::V4("95.94.61.253".parse().unwrap());
+    context_manager.add_message(ip_addr, user_message).await;
     // Process user input
     info!("Processing user input: {}", user_input);
 
     if let Some(url) = crate::url_handler::contains_url(&user_input) {
-        let result = handle_url(url, &mut context_manager, &session_id).await;
+        let result = handle_url(url, &mut context_manager, ip_addr, &session_id).await;
         match context_manager.save_context(&session_id).await {
             Ok(_) => {
                 info!("Context stored successfully")
@@ -59,7 +60,7 @@ pub async fn process_user_input(
         }
         return result;
     } else if triggers_generate::contains_trigger_word(&user_input) {
-        let result = handle_trigger(&user_input, &mut context_manager, &session_id).await;
+        let result = handle_trigger(&user_input, &mut context_manager, ip_addr, &session_id).await;
         match context_manager.save_context(&session_id).await {
             Ok(_) => {
                 error!("Error saving context");
@@ -98,7 +99,8 @@ async fn process_text_input(
         "role": "user",
         "content": user_input
     });
-    context_manager.add_message(session_id, user_message.clone()).await;
+    let ip_addr = IpAddr::V4("95.94.61.253".parse().unwrap());
+    context_manager.add_message(ip_addr, user_message.clone()).await;
 
     let mut context_messages = context_manager.get_context(session_id).await;
     context_messages.push(user_message);
@@ -116,10 +118,6 @@ async fn process_text_input(
         "stream": false
     });
     debug!("Prepared payload for API request: {:?}", payload);
-
-    // Log the request details to ensure they are correct
-    debug!("Sending request to Groq API with key: {}", groq_api_key);
-
     let response = client
        .post("https://api.groq.com/openai/v1/chat/completions")
        .header("Content-Type", "application/json")
@@ -143,7 +141,7 @@ async fn process_text_input(
                             let content = content.as_str().unwrap_or("");
                             println!("\nFANA:\n{}", content);
                             info!("FANA response: {}", content);
-                            context_manager.add_message(session_id, json!({
+                            context_manager.add_message(ip_addr, json!({
                                 "role": "assistant",
                                 "content": content
                             })).await;

@@ -9,6 +9,8 @@ pub mod manage_context {
     use tokio::io::{AsyncReadExt, AsyncWriteExt};
     use futures::io;
     use uuid::Uuid;
+    use log::{info};
+    use std::net::{IpAddr};
 
     pub struct ContextManager {
         session_manager: SessionManager,
@@ -20,11 +22,20 @@ pub mod manage_context {
                 session_manager: SessionManager::new(),
             }
         }
-
-        pub async fn add_message(&mut self, session_id: &Uuid, message: Value) {
-            if let Some(session) = self.session_manager.get_session(session_id) {
+        // Add a new message to a user's session. 
+        // It takes an IP address and a message as input, creates a new session if one doesn't exist, and adds the message to the session. 
+        // If the session already exists, it simply adds the message to the existing session.
+        pub async fn add_message(&mut self, ip_addr: IpAddr, message: Value) {
+            info!("Received message from IP address: {}", ip_addr);
+            let session_id = self.session_manager.create_session(ip_addr);
+            if let Some(session) = self.session_manager.get_session(&session_id) {
                 session.push(message);
-                self.save_context(session_id).await.unwrap();
+            } else {
+                let new_session_id = self.session_manager.create_session(ip_addr);
+                if let Some(session_mut) = self.session_manager.get_session(&new_session_id) {
+                    session_mut.push(message);
+                    self.save_context(&new_session_id).await.unwrap();
+                }
             }
         }
 
@@ -45,27 +56,33 @@ pub mod manage_context {
                 Vec::new()
             }
         }
-
+        // Save the current state of a user's session to a file during different steps. 
+        // It takes a session ID as input, retrieves the corresponding session from the SessionManager, and saves the session to a file in JSON format.
         pub async fn save_context(&mut self, session_id: &Uuid) -> io::Result<()> {
-            let mut path = PathBuf::from(env!("CARGO_MANIFEST_DIR")); // Get the directory of the Cargo.toml file
-            path.push("memory"); // Add the "memory" directory
+            let mut path = PathBuf::from("src/data"); // Create a "data" directory in your project's root directory
+            path.push("user_sessions"); // Add the "user_sessions" directory
             path.push(session_id.to_string()); // Add the session ID
             path.push("context.json"); // Add the file name
             let dir_path = path.parent().unwrap();
             fs::create_dir_all(dir_path).await?;
-            if let Some(session) = self.session_manager.get_session(session_id) {
-                let json = serde_json::to_string_pretty(&session)?;
-                let mut file = fs::File::create(path).await?;
-                file.write_all(json.as_bytes()).await?;
-                Ok(())
+            
+            let ip_addr = IpAddr::V4("95.94.61.253".parse().unwrap()); 
+            let session = if let Some(s) = self.session_manager.get_session(session_id) {
+                s.clone()
             } else {
-                Err(io::Error::new(io::ErrorKind::Other, "Session not found"))
-            }
+                let new_session_id = self.session_manager.create_session(ip_addr);
+                self.session_manager.get_session(&new_session_id).unwrap().clone()
+            };
+
+            let json = serde_json::to_string_pretty(&session)?;
+            let mut file = fs::File::create(path).await?;
+            file.write_all(json.as_bytes()).await?;
+            Ok(())
         }
 
         pub async fn load_context(&mut self, session_id: &Uuid) -> io::Result<()> {
-            let mut path = PathBuf::from(env!("CARGO_MANIFEST_DIR")); // Get the directory of the Cargo.toml file
-            path.push("memory"); // Add the "memory" directory
+            let mut path = PathBuf::from("src/data"); // Create a "data" directory in your project's root directory
+            path.push("user_sessions"); // Add the "user_sessions" directory
             path.push(session_id.to_string()); // Add the session ID
             path.push("context.json"); // Add the file name
             let dir_path = path.parent().unwrap();
@@ -75,7 +92,8 @@ pub mod manage_context {
                 let mut contents = String::new();
                 file.read_to_string(&mut contents).await?;
                 let session: Vec<Value> = serde_json::from_str(&contents)?;
-                let new_session_id = self.session_manager.create_session();
+                let ip_addr = IpAddr::V4("95.94.61.253".parse().unwrap()); // Replace with the actual IP address
+                let new_session_id = self.session_manager.create_session(ip_addr);
                 if let Some(session_mut) = self.session_manager.get_session(&new_session_id) {
                     session_mut.extend(session);
                 } else {
