@@ -3,9 +3,10 @@ use crate::image_vision::analyze_image;
 use log::{info, error};
 use regex::Regex;
 use serde_json::json;
-use crate::context_manager::ContextManager;
+use uuid::Uuid;
+use crate::context_manager::manage_context::ContextManager;
 
-pub async fn handle_url(url: &str, context_manager: &mut ContextManager) -> Result<String, Box<dyn std::error::Error>> {
+pub async fn handle_url(url: &str, context_manager: &mut ContextManager, session_id: &Uuid) -> Result<String, Box<dyn std::error::Error>> {
     info!("URL detected in user input: {}", url);
 
     match analyze_image(url).await {
@@ -14,11 +15,12 @@ pub async fn handle_url(url: &str, context_manager: &mut ContextManager) -> Resu
             info!("Image analysis: {}", analysis);
                 
             // Add the analysis result to the conversation
-            context_manager.add_message(json!({
+            context_manager.add_message(&session_id, json!({
                 "role": "assistant",
                 "content": analysis
             })).await;
             
+            info!("Added analysis result to context for session {}", session_id);
             Ok(analysis)
         },
         Err(e) => {

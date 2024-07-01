@@ -4,15 +4,14 @@ use crate::dotenv;
 use crate::session_manager::SessionManager;
 use crate::url_handler::handle_url;
 use crate::trigger_handler::handle_trigger;
-use crate::context_manager::ContextManager;
+use crate::context_manager::manage_context::ContextManager;
+use crate::context_manager::manage_context::MAX_CONTEXT_MESSAGES;
 
 use serde_json::Value;
 use reqwest::Client;
 use log::{info, debug, error};
 use serde_json::json;
-
-pub const MAX_CONTEXT_MESSAGES: usize = 10;
-
+use uuid::Uuid;
 
 pub async fn process_user_input(
     user_input: String,
@@ -25,11 +24,11 @@ pub async fn process_user_input(
     debug!("Using Groq API Key: {}", groq_api_key);
 
     let session_id = session_manager.create_session();
-    info!("Session ID: {}", session_id); // Use session_id to identify the session
+    info!("Session ID: {}", session_id);
 
-    let mut context_manager = ContextManager::new("memory");
-    match context_manager.load_context().await {
-    Ok(_) => {
+    let mut context_manager = ContextManager::new();
+    match context_manager.load_context(&session_id).await {
+        Ok(_) => {
             // context loaded successfully
         }
         Err(e) => {
@@ -42,15 +41,14 @@ pub async fn process_user_input(
         "role": "user",
         "content": user_input.clone()
     });
-    context_manager.add_message(user_message).await;
-
+    context_manager.add_message(&session_id, user_message).await;
 
     // Process user input
     info!("Processing user input: {}", user_input);
 
     if let Some(url) = crate::url_handler::contains_url(&user_input) {
-        let result = handle_url(url, &mut context_manager).await;
-        match context_manager.save_context().await {
+        let result = handle_url(url, &mut context_manager, &session_id).await;
+        match context_manager.save_context(&session_id).await {
             Ok(_) => {
                 // handle Ok variant
             }
@@ -61,8 +59,8 @@ pub async fn process_user_input(
         }
         return result;
     } else if triggers_generate::contains_trigger_word(&user_input) {
-        let result = handle_trigger(&user_input, &mut context_manager).await;
-        match context_manager.save_context().await {
+        let result = handle_trigger(&user_input, &mut context_manager, &session_id).await;
+        match context_manager.save_context(&session_id).await {
             Ok(_) => {
                 // handle Ok variant
             }
@@ -73,8 +71,8 @@ pub async fn process_user_input(
         }
         return result;
     } else {
-        let result = process_text_input(&user_input, &mut context_manager, client, groq_api_key).await;
-        match context_manager.save_context().await {
+        let result = process_text_input(&user_input, &mut context_manager, client, groq_api_key, &session_id).await;
+        match context_manager.save_context(&session_id).await {
             Ok(_) => {
                 // handle Ok variant
             }
@@ -92,16 +90,17 @@ async fn process_text_input(
     context_manager: &mut ContextManager,
     client: &Client,
     groq_api_key: &str,
+    session_id: &Uuid,
 ) -> Result<String, Box<dyn std::error::Error>> {
     info!("No URL or trigger word detected. Processing text input: {}", user_input);
 
-    context_manager.trim_context(MAX_CONTEXT_MESSAGES).await;
-
+    context_manager.trim_context(session_id).await;
     debug!("Trimmed context messages to {}", MAX_CONTEXT_MESSAGES);
 
+    let context_messages = context_manager.get_context(session_id).await;
     let payload = json!({
         "model": "mixtral-8x7b-32768",
-        "messages": context_manager.get_context(),
+        "messages": context_messages,
         "temperature": 0.5,
         "max_tokens": 4000,
         "top_p": 1,
@@ -114,12 +113,12 @@ async fn process_text_input(
     debug!("Sending request to Groq API with key: {}", groq_api_key);
 
     let response = client
-  .post("https://api.groq.com/openai/v1/chat/completions")
-  .header("Content-Type", "application/json")
-  .header("Authorization", format!("Bearer {}", &groq_api_key.trim()))
-  .json(&payload)
-  .send()
-  .await;
+       .post("https://api.groq.com/openai/v1/chat/completions")
+       .header("Content-Type", "application/json")
+       .header("Authorization", format!("Bearer {}", &groq_api_key.trim()))
+       .json(&payload)
+       .send()
+       .await;
 
     match response {
         Ok(resp) => {
@@ -136,10 +135,11 @@ async fn process_text_input(
                             let content = content.as_str().unwrap_or("");
                             println!("\nFANA:\n{}", content);
                             info!("FANA response: {}", content);
-                            context_manager.add_message(json!({
+                            context_manager.add_message(session_id, json!({
                                 "role": "assistant",
                                 "content": content
                             })).await;
+                            info!("Added assistant message to context for session {}", session_id);
                             debug!("Added assistant message to context");
                             // Log token usage
                             if let Some(usage) = json["usage"].as_object() {

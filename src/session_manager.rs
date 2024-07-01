@@ -1,3 +1,4 @@
+// session_manager.rs
 use std::collections::HashMap;
 use uuid::Uuid;
 use serde_json::Value;

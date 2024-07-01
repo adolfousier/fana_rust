@@ -7,7 +7,7 @@ use actix_web::{web, HttpResponse, Responder};
 use actix_web::http::header::ContentType;
 use serde::Deserialize;
 use reqwest::Client;
-use log::{error, debug};
+use log::{error, debug, info};
 use std::sync::{Arc, Mutex};
 use serde_json::json;
 
@@ -33,10 +33,11 @@ async fn interact_route(
     groq_api_key: web::Data<String>, 
     session_manager: web::Data<Arc<Mutex<SessionManager>>>,
 ) -> impl Responder {
-    let session_manager = session_manager.into_inner();
-    let mut session_manager = session_manager.lock().unwrap();
-    let session_id = session_manager.create_session();
-    let mut session = session_manager.get_session(&session_id).unwrap().clone();
+    let session_manager_arc = session_manager.clone();
+    let mut session_manager_lock = session_manager_arc.lock().unwrap();
+    let session_id = session_manager_lock.create_session();
+    info!("Added assistant message to context for session {}", session_id);
+    let mut session = session_manager_lock.get_session(&session_id).unwrap().clone();
 
     let groq_api_key = groq_api_key.get_ref().trim();
 
@@ -51,15 +52,15 @@ async fn interact_route(
 
     match process_user_input(
         interact_req.question.clone(),
-        &mut session_manager,
+        &mut session_manager_lock,
         &client,
         groq_api_key
     ).await {
         Ok(response) => {
             // Return the response as plain text
             HttpResponse::Ok()
-        .content_type(ContentType::plaintext())
-        .body(response)
+     .content_type(ContentType::plaintext())
+     .body(response)
         }
         Err(e) => {
             error!("Failed to process user input: {}", e);
