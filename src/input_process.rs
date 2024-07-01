@@ -29,7 +29,7 @@ pub async fn process_user_input(
     let mut context_manager = ContextManager::new();
     match context_manager.load_context(&session_id).await {
         Ok(_) => {
-            // context loaded successfully
+         info!("Context loaded successfully")
         }
         Err(e) => {
             // handle error
@@ -50,7 +50,7 @@ pub async fn process_user_input(
         let result = handle_url(url, &mut context_manager, &session_id).await;
         match context_manager.save_context(&session_id).await {
             Ok(_) => {
-                // handle Ok variant
+                info!("Context stored successfully")
             }
             Err(e) => {
                 // handle Err variant
@@ -62,7 +62,7 @@ pub async fn process_user_input(
         let result = handle_trigger(&user_input, &mut context_manager, &session_id).await;
         match context_manager.save_context(&session_id).await {
             Ok(_) => {
-                // handle Ok variant
+                error!("Error saving context");
             }
             Err(e) => {
                 // handle Err variant
@@ -94,10 +94,18 @@ async fn process_text_input(
 ) -> Result<String, Box<dyn std::error::Error>> {
     info!("No URL or trigger word detected. Processing text input: {}", user_input);
 
+    let user_message = json!({
+        "role": "user",
+        "content": user_input
+    });
+    context_manager.add_message(session_id, user_message.clone()).await;
+
+    let mut context_messages = context_manager.get_context(session_id).await;
+    context_messages.push(user_message);
+
     context_manager.trim_context(session_id).await;
     debug!("Trimmed context messages to {}", MAX_CONTEXT_MESSAGES);
 
-    let context_messages = context_manager.get_context(session_id).await;
     let payload = json!({
         "model": "mixtral-8x7b-32768",
         "messages": context_messages,

@@ -53,11 +53,14 @@ pub mod manage_context {
             path.push("context.json"); // Add the file name
             let dir_path = path.parent().unwrap();
             fs::create_dir_all(dir_path).await?;
-            let session = self.session_manager.get_session(session_id).unwrap().clone();
-            let json = serde_json::to_string_pretty(&session)?;
-            let mut file = fs::File::create(path).await?;
-            file.write_all(json.as_bytes()).await?;
-            Ok(())
+            if let Some(session) = self.session_manager.get_session(session_id) {
+                let json = serde_json::to_string_pretty(&session)?;
+                let mut file = fs::File::create(path).await?;
+                file.write_all(json.as_bytes()).await?;
+                Ok(())
+            } else {
+                Err(io::Error::new(io::ErrorKind::Other, "Session not found"))
+            }
         }
 
         pub async fn load_context(&mut self, session_id: &Uuid) -> io::Result<()> {
@@ -75,6 +78,8 @@ pub mod manage_context {
                 let new_session_id = self.session_manager.create_session();
                 if let Some(session_mut) = self.session_manager.get_session(&new_session_id) {
                     session_mut.extend(session);
+                } else {
+                    return Err(io::Error::new(io::ErrorKind::Other, "Failed to create new session"));
                 }
             }
             Ok(())
