@@ -1,5 +1,4 @@
 // api_routes.rs
-use crate::system_prompt::SYSTEM_PROMPT;
 use crate::session_manager::SessionManager;
 use crate::input_process::process_user_input;
 
@@ -7,9 +6,8 @@ use actix_web::{web, HttpResponse, Responder};
 use actix_web::http::header::ContentType;
 use serde::Deserialize;
 use reqwest::Client;
-use log::{error, debug, info};
+use log::{error, info};
 use std::sync::{Arc, Mutex};
-use serde_json::json;
 use std::net::IpAddr;
 
 #[derive(Deserialize)]
@@ -17,13 +15,15 @@ struct InteractRequest {
     question: String,
 }
 
+
+
 // Set API Routes
 pub fn configure(cfg: &mut web::ServiceConfig, groq_api_key: web::Data<String>) {
     cfg.service(
         web::scope("/api")
-           .app_data(web::Data::new(Client::new()))
-           .app_data(web::Data::new(groq_api_key.clone()))
-           .route("/interact", web::post().to(interact_route))
+            .app_data(web::Data::new(Client::new()))
+            .app_data(web::Data::new(groq_api_key.clone()))
+            .route("/interact", web::post().to(interact_route))
     );
 }
 
@@ -31,7 +31,7 @@ pub fn configure(cfg: &mut web::ServiceConfig, groq_api_key: web::Data<String>) 
 async fn interact_route(
     interact_req: web::Json<InteractRequest>,
     client: web::Data<Client>,
-    groq_api_key: web::Data<String>, 
+    groq_api_key: web::Data<String>,
     session_manager: web::Data<Arc<Mutex<SessionManager>>>,
 ) -> impl Responder {
     let session_manager_arc = session_manager.clone();
@@ -39,26 +39,16 @@ async fn interact_route(
     let ip_addr = IpAddr::V4("95.94.61.253".parse().unwrap());
     let session_id = session_manager_lock.create_session(ip_addr);
     info!("Added assistant message to context for session {}", session_id);
-    let mut session = session_manager_lock.get_session(&session_id).unwrap().clone();
+    let session = session_manager_lock.get_session(&session_id).unwrap().clone();
 
     let groq_api_key = groq_api_key.get_ref().trim();
-
-    // Add system prompt if m
-    // Messages are empty (first call)
-    if session.is_empty() {
-        session.push(json!({
-            "role": "system",
-            "content": SYSTEM_PROMPT
-        }));
-    }
-    debug!("Using GROQ API Key in API route: {}", groq_api_key);
 
     match process_user_input(
         interact_req.question.clone(),
         &mut session_manager_lock,
         &client,
         groq_api_key,
-        ip_addr 
+        ip_addr,
     ).await {
         Ok(response) => {
             // Return the response as plain text
@@ -110,5 +100,3 @@ async fn interact_route(
 //             .route("/analyze", web::post().to(analyze_image_route))
 //     );
 // }
-
-

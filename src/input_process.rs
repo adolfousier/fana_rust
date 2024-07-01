@@ -1,4 +1,5 @@
 // input_process.rs
+
 use crate::triggers_generate;
 use crate::dotenv;
 use crate::session_manager::SessionManager;
@@ -6,6 +7,7 @@ use crate::url_handler::handle_url;
 use crate::trigger_handler::handle_trigger;
 use crate::context_manager::manage_context::ContextManager;
 use crate::context_manager::manage_context::MAX_CONTEXT_MESSAGES;
+use crate::system_prompt::SYSTEM_PROMPT;
 
 use serde_json::Value;
 use reqwest::Client;
@@ -29,20 +31,14 @@ pub async fn process_user_input(
 
     let mut context_manager = ContextManager::new();
     match context_manager.load_context(&session_id).await {
-        Ok(_) => {
-         info!("Context loaded successfully")
-        }
-        Err(e) => {
-            // handle error
-            eprintln!("Error loading context: {}", e);
-        }
+        Ok(_) => info!("Context loaded successfully"),
+        Err(e) => eprintln!("Error loading context: {}", e),
     }
 
     let user_message = json!({
         "role": "user",
         "content": user_input.clone()
     });
-    let ip_addr = IpAddr::V4("95.94.61.253".parse().unwrap());
     context_manager.add_message(ip_addr, user_message).await;
     // Process user input
     info!("Processing user input: {}", user_input);
@@ -50,37 +46,22 @@ pub async fn process_user_input(
     if let Some(url) = crate::url_handler::contains_url(&user_input) {
         let result = handle_url(url, &mut context_manager, ip_addr, &session_id).await;
         match context_manager.save_context(&session_id).await {
-            Ok(_) => {
-                info!("Context stored successfully")
-            }
-            Err(e) => {
-                // handle Err variant
-                error!("Error saving context: {}", e);
-            }
+            Ok(_) => info!("Context stored successfully"),
+            Err(e) => error!("Error saving context: {}", e),
         }
         return result;
     } else if triggers_generate::contains_trigger_word(&user_input) {
         let result = handle_trigger(&user_input, &mut context_manager, ip_addr, &session_id).await;
         match context_manager.save_context(&session_id).await {
-            Ok(_) => {
-                error!("Error saving context");
-            }
-            Err(e) => {
-                // handle Err variant
-                error!("Error saving context: {}", e);
-            }
+            Ok(_) => info!("Context stored successfully"),
+            Err(e) => error!("Error saving context: {}", e),
         }
         return result;
     } else {
         let result = process_text_input(&user_input, &mut context_manager, client, groq_api_key, &session_id).await;
         match context_manager.save_context(&session_id).await {
-            Ok(_) => {
-                // handle Ok variant
-            }
-            Err(e) => {
-                // handle Err variant
-                error!("Error saving context: {}", e);
-            }
+            Ok(_) => info!("Context stored successfully"),
+            Err(e) => error!("Error saving context: {}", e),
         }
         return result;
     }
@@ -100,9 +81,19 @@ async fn process_text_input(
         "content": user_input
     });
     let ip_addr = IpAddr::V4("95.94.61.253".parse().unwrap());
-    context_manager.add_message(ip_addr, user_message.clone()).await;
 
     let mut context_messages = context_manager.get_context(session_id).await;
+
+    // Add the system prompt at the beginning of the context messages if it's not already there
+    if context_messages.is_empty() || context_messages[0]["role"] != "system" {
+        let system_message = json!({
+            "role": "system",
+            "content": SYSTEM_PROMPT
+        });
+        context_messages.insert(0, system_message);
+        info!("System prompt added to the API request payload.");
+    }
+
     context_messages.push(user_message);
 
     context_manager.trim_context(session_id).await;
@@ -168,3 +159,6 @@ async fn process_text_input(
         }
     }
 }
+
+
+

@@ -5,16 +5,8 @@ use serde::{Deserialize, Serialize};
 use std::env;
 
 
-async fn run_interactive_mode(client: Client, groq_api_key: String, system_prompt: String, session_manager: SessionManager, ip_addr: IP_ADDR) -> Result<(), Box<dyn std::error::Error>> {
+async fn run_interactive_mode(client: Client, groq_api_key: String, session_manager: SessionManager, ip_addr: IP_ADDR) -> Result<(), Box<dyn std::error::Error>> {
     dotenv().ok();
-    let mut messages = vec![
-        json!({
-            "role": "system",
-            "content": system_prompt
-        })
-    ];
-    debug!("Initial system message set");
-
     loop {
         print!("\nYou:\n");
         io::stdout().flush()?;

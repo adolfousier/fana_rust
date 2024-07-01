@@ -1,0 +1,14 @@
+[
+  {
+    "content": "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",
+    "role": "system"
+  },
+  {
+    "content": "What is good",
+    "role": "user"
+  },
+  {
+    "content": "\"Good\" is a subjective term that can have different meanings depending on the context. Generally, it is used to describe something that is positive, desirable, or valuable. Here are a few ways \"good\" can be used:\n\n1. Morally right or virtuous: A person who is kind, honest, and compassionate is considered a good person.\n2. High quality or effective: A good product or service is one that performs well, meets or exceeds expectations, and provides value to the user.\n3. Pleasant or enjoyable: A good experience, such as a delicious meal or a fun outing, is one that brings happiness and satisfaction.\n4. Skilled or competent: A good worker or athlete is one who has the knowledge, ability, and experience to perform their job or activity well.\n5. Ethical or fair: A good decision or policy is one that considers the needs and rights of all parties involved and promotes justice and fairness.\n\nOverall, \"good\" is a term that reflects positivity, value, and desirability, and can be used in many different contexts to describe a wide range of things.",
+    "role": "assistant"
+  }
+]
