@@ -78,13 +78,33 @@ pub async fn process_text_input(
     // Retrieve context messages
     let context_messages = context_manager.get_context(session_id).await;
 
+    let mut system_message_exists = false;
+    for message in &context_messages {
+        if let Some(role) = message.get("role") {
+            if role.as_str().unwrap_or("") == "system" {
+                system_message_exists = true;
+                break;
+            }
+        }
+    }
+
+    let mut payload_messages = vec![];
     let mut system_message = Map::new();
-    system_message.insert("role".to_string(), Value::from("system"));
-    system_message.insert("content".to_string(), Value::from(SYSTEM_PROMPT));
+    if!system_message_exists {
+        system_message.insert("role".to_string(), Value::from("system"));
+        system_message.insert("content".to_string(), Value::from(SYSTEM_PROMPT));
+        context_manager.add_message(IpAddr::V4("95.94.61.253".parse().unwrap()), serde_json::Value::Object(system_message.clone())).await;
+        payload_messages.push(serde_json::Value::Object(system_message.clone()));
+    } else {
+        payload_messages = context_messages.clone();
+    }
 
     let mut user_message = Map::new();
     user_message.insert("role".to_string(), Value::from("user"));
     user_message.insert("content".to_string(), Value::from(user_input));
+    
+    context_manager.add_message(IpAddr::V4("95.94.61.253".parse().unwrap()), serde_json::Value::Object(user_message.clone())).await;
+    payload_messages.push(serde_json::Value::Object(user_message.clone()));
 
     let mut payload_messages = vec![
         serde_json::Value::Object(system_message),
