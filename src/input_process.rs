@@ -89,14 +89,16 @@ pub async fn process_text_input(
     }
 
     let mut payload_messages = vec![];
-    let mut system_message = Map::new();
     if!system_message_exists {
+        let mut system_message = Map::new();
         system_message.insert("role".to_string(), Value::from("system"));
         system_message.insert("content".to_string(), Value::from(SYSTEM_PROMPT));
         context_manager.add_message(IpAddr::V4("95.94.61.253".parse().unwrap()), serde_json::Value::Object(system_message.clone())).await;
         payload_messages.push(serde_json::Value::Object(system_message.clone()));
     } else {
-        payload_messages = context_messages.clone();
+        for message in context_messages.clone() {
+            payload_messages.push(message.clone());
+        }
     }
 
     let mut user_message = Map::new();
@@ -105,17 +107,6 @@ pub async fn process_text_input(
     
     context_manager.add_message(IpAddr::V4("95.94.61.253".parse().unwrap()), serde_json::Value::Object(user_message.clone())).await;
     payload_messages.push(serde_json::Value::Object(user_message.clone()));
-
-    let mut payload_messages = vec![
-        serde_json::Value::Object(system_message),
-        serde_json::Value::Object(user_message.clone()),
-    ];
-
-    if!context_messages.is_empty() {
-        for message in context_messages {
-            payload_messages.push(message.clone());
-        }
-    }
 
     let payload = json!({
         "model": "mixtral-8x7b-32768",
