@@ -78,17 +78,14 @@ pub async fn process_text_input(
     // Retrieve context messages
     let context_messages = context_manager.get_context(session_id).await;
 
-    // Create the system message
     let mut system_message = Map::new();
     system_message.insert("role".to_string(), Value::from("system"));
     system_message.insert("content".to_string(), Value::from(SYSTEM_PROMPT));
 
-    // Create the user message
     let mut user_message = Map::new();
     user_message.insert("role".to_string(), Value::from("user"));
     user_message.insert("content".to_string(), Value::from(user_input));
 
-    // Prepare the payload for the API request
     let mut payload_messages = vec![
         serde_json::Value::Object(system_message),
         serde_json::Value::Object(user_message.clone()),
@@ -99,10 +96,6 @@ pub async fn process_text_input(
             payload_messages.push(message.clone());
         }
     }
-
-    // Trim the context if it exceeds the maximum length
-    context_manager.trim_context(session_id).await;
-    debug!("Trimmed context messages to {}", MAX_CONTEXT_MESSAGES);
 
     let payload = json!({
         "model": "mixtral-8x7b-32768",
@@ -115,6 +108,10 @@ pub async fn process_text_input(
     });
 
     debug!("Prepared payload for API request: {:?}", payload);
+
+    // Trim the context if it exceeds the maximum length
+    context_manager.trim_context(session_id).await;
+    debug!("Trimmed context messages to {}", MAX_CONTEXT_MESSAGES);
 
     // Send the request to the Groq API
     let response = client
