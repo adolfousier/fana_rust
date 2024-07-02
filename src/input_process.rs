@@ -8,6 +8,7 @@ use crate::context_manager::manage_context::ContextManager;
 use crate::context_manager::manage_context::MAX_CONTEXT_MESSAGES;
 use crate::system_prompt::SYSTEM_PROMPT;
 
+use serde_json::map::Map;
 use serde_json::Value;
 use reqwest::Client;
 use log::{info, debug, error};
@@ -34,11 +35,10 @@ pub async fn process_user_input(
         Err(e) => eprintln!("Error loading context: {}", e),
     }
 
-    let user_message = json!({
-        "role": "user",
-        "content": user_input.clone()
-    });
-    context_manager.add_message(ip_addr, user_message).await;
+    let mut user_message = Map::new();
+    user_message.insert("role".to_string(), Value::from("user"));
+    user_message.insert("content".to_string(), Value::from(user_input.clone()));
+    user_message.insert("r#type".to_string(), Value::from("text"));
     // Process user input
     info!("Processing user input: {}", user_input);
 
@@ -66,7 +66,7 @@ pub async fn process_user_input(
     }
 }
 
-async fn process_text_input(
+pub async fn process_text_input(
     user_input: &str,
     context_manager: &mut ContextManager,
     client: &Client,
@@ -75,37 +75,48 @@ async fn process_text_input(
 ) -> Result<String, Box<dyn std::error::Error>> {
     info!("No URL or trigger word detected. Processing text input: {}", user_input);
 
-    let user_message = json!({
-        "role": "user",
-        "content": user_input
-    });
-    let ip_addr = IpAddr::V4("95.94.61.253".parse().unwrap());
+    // Retrieve context messages
+    let context_messages = context_manager.get_context(session_id).await;
 
-    let mut context_messages = context_manager.get_context(session_id).await;
+    // Create the system message
+    let mut system_message = Map::new();
+    system_message.insert("role".to_string(), Value::from("system"));
+    system_message.insert("content".to_string(), Value::from(SYSTEM_PROMPT));
 
-    // Always add the system prompt at the beginning of the context messages
-    let system_message = json!({
-        "role": "system",
-        "content": SYSTEM_PROMPT
-    });
-    context_messages.insert(0, system_message);
-    info!("System prompt added to the API request payload.");
+    // Create the user message
+    let mut user_message = Map::new();
+    user_message.insert("role".to_string(), Value::from("user"));
+    user_message.insert("content".to_string(), Value::from(user_input));
 
-    context_messages.push(user_message);
+    // Prepare the payload for the API request
+    let mut payload_messages = vec![
+        serde_json::Value::Object(system_message),
+        serde_json::Value::Object(user_message.clone()),
+    ];
 
+    if!context_messages.is_empty() {
+        for message in context_messages {
+            payload_messages.push(message.clone());
+        }
+    }
+
+    // Trim the context if it exceeds the maximum length
     context_manager.trim_context(session_id).await;
     debug!("Trimmed context messages to {}", MAX_CONTEXT_MESSAGES);
 
     let payload = json!({
         "model": "mixtral-8x7b-32768",
-        "messages": context_messages,
+        "messages": payload_messages,
         "temperature": 0.5,
         "max_tokens": 4000,
         "top_p": 1,
         "stop": null,
-        "stream": false
+        "stream": false,
     });
+
     debug!("Prepared payload for API request: {:?}", payload);
+
+    // Send the request to the Groq API
     let response = client
        .post("https://api.groq.com/openai/v1/chat/completions")
        .header("Content-Type", "application/json")
@@ -129,12 +140,15 @@ async fn process_text_input(
                             let content = content.as_str().unwrap_or("");
                             println!("\nFANA:\n{}", content);
                             info!("FANA response: {}", content);
-                            context_manager.add_message(ip_addr, json!({
-                                "role": "assistant",
-                                "content": content
-                            })).await;
+
+                            // Add the assistant message to the context
+                            let mut assistant_message = Map::new();
+                            assistant_message.insert("role".to_string(), Value::from("assistant"));
+                            assistant_message.insert("content".to_string(), Value::from(content));
+                            context_manager.add_message(IpAddr::V4("95.94.61.253".parse().unwrap()), serde_json::Value::Object(assistant_message)).await;
                             info!("Added assistant message to context for session {}", session_id);
                             debug!("Added assistant message to context");
+
                             // Log token usage
                             if let Some(usage) = json["usage"].as_object() {
                                 let prompt_tokens = usage.get("prompt_tokens").and_then(Value::as_u64).unwrap_or(0);
@@ -142,6 +156,8 @@ async fn process_text_input(
                                 let total_tokens = usage.get("total_tokens").and_then(Value::as_u64).unwrap_or(0);
                                 info!("Token usage - Prompt tokens: {}, Completion tokens: {}, Total tokens: {}", prompt_tokens, completion_tokens, total_tokens);
                             }
+
+                            // Return the content of the assistant's response
                             return Ok(content.to_string());
                         }
                     }
@@ -156,8 +172,6 @@ async fn process_text_input(
         }
     }
 }
-
-
 
 
 

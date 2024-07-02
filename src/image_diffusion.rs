@@ -7,7 +7,7 @@ struct CreateImageRequest {
     prompt: String,
     n: usize,
     size: String,
-    model: String, // Add model field to specify DALL-E 3
+    model: String, // Add model field to speciftype: "text"y DALL-E 3
 }
 
 #[derive(Deserialize)]

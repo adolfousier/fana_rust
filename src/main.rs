@@ -15,7 +15,7 @@ use crate::session_manager::SessionManager;
 
 use actix_web::{App, HttpServer, middleware, web};
 use std::env;
-use log::{info, debug, error};
+use log::{info, error};
 use log4rs;
 use std::fs;
 use std::io::{self, Write};
@@ -69,9 +69,6 @@ async fn main() -> std::io::Result<()> {
     info!("Starting Fana AI assistant");
 
     let groq_api_key = env::var("GROQ_API_KEY").expect("GROQ_API_KEY not set");
-
-    debug!("System prompt loaded successfully");
-
     let client = Client::new();
 
     // Clone the variables to move them into the thread

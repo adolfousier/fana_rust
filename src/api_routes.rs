@@ -39,7 +39,7 @@ async fn interact_route(
     let ip_addr = IpAddr::V4("95.94.61.253".parse().unwrap());
     let session_id = session_manager_lock.create_session(ip_addr);
     info!("Added assistant message to context for session {}", session_id);
-    let session = session_manager_lock.get_session(&session_id).unwrap().clone();
+    //let session = session_manager_lock.get_session(&session_id).unwrap().clone();
 
     let groq_api_key = groq_api_key.get_ref().trim();
 
